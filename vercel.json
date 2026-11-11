@@ -1,4 +1,8 @@
 {
+  "rewrites": [
+    { "source": "/sitemap.xml", "destination": "/api/seo?f=sitemap" },
+    { "source": "/robots.txt", "destination": "/api/seo?f=robots" }
+  ],
   "headers": [
     { "source": "/admin.html", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }] }
   ]

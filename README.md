@@ -68,6 +68,7 @@ Los formularios (contacto y "Envía tu noticia") llegan a `Contenido.toramaagenc
 - `js/site.js` — cabecera, menú y pie de las páginas interiores.
 - `js/casos.js`, `js/noticias.js`, `js/admin.js` — lógica de cada página.
 - `api/panel.js` — función de servidor (Vercel) que valida la clave del equipo y publica en el repositorio.
+- `api/seo.js` — genera `/sitemap.xml` (páginas, noticias y casos publicados) y `/robots.txt` con el dominio en uso.
 - `assets/` — fotos, logos y tipografías.
 
 ## Marca
