@@ -18,7 +18,7 @@
   var RAW = 'https://raw.githubusercontent.com/' + CFG.owner + '/' + CFG.repo + '/' + CFG.branch + '/';
   var KEY = 'torama_panel_sesion', KEY_AUTOR = 'torama_panel_autor';
 
-  var NOMBRES = { noticias: { uno: 'noticia', una: 'Nueva noticia', titulo: 'Noticiero', pagina: 'noticias.html?n=' }, casos: { uno: 'caso', una: 'Nuevo caso', titulo: 'Casos de éxito', pagina: 'casos.html?c=' } };
+  var NOMBRES = { noticias: { uno: 'entrada', una: 'Nueva entrada', titulo: 'Blog', pagina: 'noticias.html?n=' }, casos: { uno: 'caso', una: 'Nuevo caso', titulo: 'Casos de éxito', pagina: 'casos.html?c=' } };
   var st = { modo: 'equipo', secreto: '', nombre: '', tipo: 'noticias', data: { noticias: [], casos: [] }, pend: {}, busca: '', sucio: false };
 
   function $(s, r) { return (r || document).querySelector(s); }
@@ -141,7 +141,7 @@
     var gitHub = modo === 'github';
     $('#clave-label').textContent = gitHub ? 'Llave de GitHub (token)' : 'Clave del equipo';
     $('#clave').placeholder = gitHub ? 'github_pat_…' : 'Pídesela al administrador';
-    $('#login-lead').textContent = gitHub ? 'Entra con tu nombre y tu llave personal de GitHub (con permiso de escritura en WebTorama).' : 'Publica noticias y casos de éxito en la web de Torama. Entra con tu nombre y la clave del equipo.';
+    $('#login-lead').textContent = gitHub ? 'Entra con tu nombre y tu llave personal de GitHub (con permiso de escritura en WebTorama).' : 'Publica entradas del blog y casos de éxito en la web de Torama. Entra con tu nombre y la clave del equipo.';
     $('#cambiar-modo').textContent = gitHub ? 'Entrar con la clave del equipo' : 'Entrar con una llave de GitHub';
     $('#ayuda-github').hidden = !gitHub;
   }
@@ -300,7 +300,7 @@
         campo('Resumen', '<textarea name="resumen" rows="2" placeholder="Una frase con el resultado principal">' + esc(e.resumen || '') + '</textarea>', 'field--short') +
         '<fieldset class="box"><legend>Resultados en números <small>(opcional)</small></legend><div id="metricas"></div><button type="button" class="mini" data-act="mas-metrica">+ Añadir resultado</button></fieldset>';
     } else {
-      html += campo('Extracto', '<textarea name="extracto" rows="2" placeholder="Una o dos frases que resumen la noticia">' + esc(e.extracto || '') + '</textarea>', 'field--short');
+      html += campo('Extracto', '<textarea name="extracto" rows="2" placeholder="Una o dos frases que resumen la entrada">' + esc(e.extracto || '') + '</textarea>', 'field--short');
     }
     html += '<div class="mdbox"><div class="mdbar" role="toolbar" aria-label="Formato">' +
       '<span class="mdbar__label">Contenido</span>' +

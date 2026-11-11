@@ -18,7 +18,7 @@ y abrir `http://localhost:8000`.
 
 - `index.html` — portada inmersiva, con el formulario de contacto.
 - `casos.html` — todos los trabajos y casos de éxito, con filtros por servicio y página de detalle (`casos.html?c=…`).
-- `noticias.html` — el Noticiero: listado, búsqueda, lectura (`noticias.html?n=…`) y formulario público "Envía tu noticia".
+- `noticias.html` — el Blog: listado, búsqueda, lectura (`noticias.html?n=…`) y formulario público "Envía tu nota de prensa".
 - `admin.html` — panel del equipo para publicar noticias y casos.
 - `privacidad.html` — política de privacidad (incluye las instrucciones de eliminación de datos en `privacidad.html#eliminacion`).
 
@@ -56,7 +56,7 @@ Para cambiar la clave del equipo basta con cambiar `TEAM_KEY` y volver a despleg
 
 ## Formularios
 
-Los formularios (contacto y "Envía tu noticia") llegan a `Contenido.toramaagency@gmail.com` a través de [FormSubmit](https://formsubmit.co), sin servidor propio. La primera vez que alguien envíe un formulario, FormSubmit manda a ese buzón un correo de activación que hay que confirmar una sola vez. Si el envío falla, el formulario ofrece mandarlo por correo o WhatsApp.
+Los formularios (contacto y "Envía tu nota de prensa") llegan a `Contenido.toramaagency@gmail.com` a través de [FormSubmit](https://formsubmit.co), sin servidor propio. La primera vez que alguien envíe un formulario, FormSubmit manda a ese buzón un correo de activación que hay que confirmar una sola vez. Si el envío falla, el formulario ofrece mandarlo por correo o WhatsApp.
 
 ## Estructura
 
@@ -75,7 +75,7 @@ Los formularios (contacto y "Envía tu noticia") llegan a `Contenido.toramaagenc
 
 Colores, tipografía e imagotipo salen del manual corporativo:
 
-- Verde `#78ffc0`, teal oscuro `#00242b`, blanco y negro, más el coral `#e6414c` como contraste. El morado `#6750d6` del manual no se usa.
+- Azul marino `#12283f` como color principal (el fondo del logo), verde `#78ffc0` como acento, blanco, y el coral `#e6414c` como contraste. El morado `#6750d6` del manual no se usa.
 - Tipografía Caviar Dreams (`assets/fonts/`) para el logotipo y los textos finos; Poppins para títulos y cuerpo.
 - El torii, el círculo y el logotipo "Torama Agency" son los trazados vectoriales del manual (`js/torii.js`). La aurora del sello está redibujada en verde.
 

@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Noticiero · Torama Agency</title>
-  <meta name="description" content="El Noticiero Torama: novedades, aprendizajes y noticias del equipo de Torama Agency y de las marcas con las que trabajamos.">
-  <meta name="theme-color" content="#00242b">
+  <title>Blog · Torama Agency</title>
+  <meta name="description" content="El blog de Torama Agency: novedades, aprendizajes y notas del equipo de Torama Agency y de las marcas con las que trabajamos.">
+  <meta name="theme-color" content="#12283f">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,12 +25,12 @@
     <section class="phead" id="lista-cabecera">
       <div class="wrap">
         <p class="kicker reveal">Lo que pasa dentro de Torama</p>
-        <h1 class="title title--xl reveal">Noti<em>ciero</em></h1>
-        <p class="lead reveal">Novedades, aprendizajes y noticias contadas por el equipo y por quienes crecen con nosotros.</p>
+        <h1 class="title title--xl reveal">Bl<em>og</em></h1>
+        <p class="lead reveal">Novedades, aprendizajes y notas contadas por el equipo y por quienes crecen con nosotros.</p>
         <div class="tools reveal">
-          <label class="search"><span class="sr-only">Buscar noticias</span>
+          <label class="search"><span class="sr-only">Buscar en el blog</span>
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
-            <input type="search" id="buscar" placeholder="Buscar noticias…" autocomplete="off">
+            <input type="search" id="buscar" placeholder="Buscar en el blog…" autocomplete="off">
           </label>
           <div class="chips" id="filtros" role="group" aria-label="Filtrar por categoría"></div>
         </div>
@@ -39,7 +39,7 @@
     <section class="wrap" id="lista" aria-live="polite">
       <div id="destacada"></div>
       <div class="grid grid--noticias" id="grid"></div>
-      <p class="empty" id="vacio" hidden>No encontramos noticias con esa búsqueda.</p>
+      <p class="empty" id="vacio" hidden>No encontramos entradas con esa búsqueda.</p>
     </section>
 
     <!-- Detalle de una noticia -->
@@ -50,25 +50,25 @@
       <div class="submit__box reveal">
         <div class="submit__text">
           <p class="kicker">¿Tienes algo que contar?</p>
-          <h2 class="title">Envía tu <em>noticia</em></h2>
-          <p class="lead">Cuéntanos tu noticia y el equipo la revisa. Si se publica, sale en el Noticiero con tu nombre: <strong>Creado por ti</strong>.</p>
+          <h2 class="title">Envía tu <em>nota de prensa</em></h2>
+          <p class="lead">Envíanos tu nota de prensa y el equipo la revisa. Si se publica, sale en el Blog con tu nombre: <strong>Creado por ti</strong>.</p>
           <ol class="steps">
-            <li><b>1</b> Escribe tu noticia y envíala.</li>
+            <li><b>1</b> Escribe tu nota de prensa y envíala.</li>
             <li><b>2</b> La revisamos y te escribimos si hace falta algo.</li>
             <li><b>3</b> Se publica con tu firma.</li>
           </ol>
           <p class="submit__team">¿Eres del equipo? <a href="admin.html">Publica desde el panel</a>.</p>
         </div>
-        <form class="form" data-torama-form data-subject="Nueva noticia para el Noticiero Torama" data-ok="¡Gracias! Recibimos tu noticia. El equipo la revisará y te avisará cuando se publique." novalidate>
+        <form class="form" data-torama-form data-subject="Nueva nota de prensa para el Blog de Torama" data-ok="¡Gracias! Recibimos tu nota de prensa. El equipo la revisará y te avisará cuando se publique." novalidate>
           <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="form__row">
             <label class="field field--ico"><svg class="field__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><input type="text" name="autor" data-label="Creado por" placeholder="Tu nombre, como saldrá publicado" required autocomplete="name"><span>Creado por</span></label>
             <label class="field field--ico"><svg class="field__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg><input type="email" name="email" data-label="email" placeholder="tucorreo@ejemplo.com" required autocomplete="email"><span>Correo</span></label>
           </div>
-          <label class="field field--ico"><svg class="field__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/></svg><input type="text" name="titulo" data-label="Título" placeholder="Un título claro y corto" required maxlength="140"><span>Título de la noticia</span></label>
-          <label class="field"><textarea name="noticia" data-label="Noticia" rows="7" placeholder="Cuéntanos qué pasó, dónde y cuándo…" required></textarea><span>Tu noticia</span></label>
+          <label class="field field--ico"><svg class="field__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/></svg><input type="text" name="titulo" data-label="Título" placeholder="Un título claro y corto" required maxlength="140"><span>Título de la nota</span></label>
+          <label class="field"><textarea name="noticia" data-label="Nota de prensa" rows="7" placeholder="Cuéntanos qué pasó, dónde y cuándo…" required></textarea><span>Tu nota de prensa</span></label>
           <label class="field field--ico"><svg class="field__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg><input type="url" name="enlace" data-label="Enlace a fotos o video" placeholder="https://drive.google.com/…"><span>Enlace a fotos o video <small>(opcional)</small></span></label>
-          <button class="btn btn--red btn--lg btn--send" type="submit"><span>Enviar mi noticia</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+          <button class="btn btn--red btn--lg btn--send" type="submit"><span>Enviar mi nota de prensa</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
           <p class="form__status" role="status" aria-live="polite"></p>
             <p class="form__legal">Al enviar aceptas nuestra <a href="privacidad.html">Política de privacidad</a>.</p>
         </form>

@@ -67,11 +67,11 @@
 
   var WHITE = [255, 255, 255];
   var RED_A = [255, 112, 122], RED_B = [230, 65, 76], RED_C = [158, 34, 48];
-  var ROOF_A = [70, 150, 140], ROOF_B = [8, 62, 68];
+  var ROOF_A = [96, 128, 184], ROOF_B = [30, 52, 104];
   // Paletas de cielo: noche -> amanecer
-  var N_TOP = [0, 9, 12], N_MID = [0, 36, 43], N_HOR = [14, 98, 96];
-  var D_TOP = [0, 44, 52], D_MID = [40, 110, 104], D_HOR = [255, 150, 122];
-  var W_DEEP = [0, 12, 15];
+  var N_TOP = [6, 13, 26], N_MID = [18, 40, 63], N_HOR = [34, 86, 132];
+  var D_TOP = [16, 34, 78], D_MID = [58, 86, 142], D_HOR = [255, 150, 122];
+  var W_DEEP = [6, 13, 26];
   var MOON = [200, 255, 228], SUN = [255, 150, 120];
 
   function fontOf(w, size) {
@@ -137,9 +137,9 @@
 
     stars = buildStars();
     ridges = [
-      buildRidge(11, 0.42, 0.3, 'rgb(22,92,96)', 'rgb(14,76,82)', 0.62),
-      buildRidge(23, 0.5, 0.12, 'rgb(6,58,66)', 'rgb(4,50,58)', 0),
-      buildRidge(37, 0.3, 0.04, 'rgb(0,34,40)', 'rgb(0,28,34)', 0)
+      buildRidge(11, 0.42, 0.3, 'rgb(40,78,128)', 'rgb(30,64,110)', 0.62),
+      buildRidge(23, 0.5, 0.12, 'rgb(24,50,90)', 'rgb(20,44,80)', 0),
+      buildRidge(37, 0.3, 0.04, 'rgb(12,28,52)', 'rgb(10,24,44)', 0)
     ];
 
     var r = rng(99);
@@ -203,7 +203,7 @@
       ctx.save();
       ctx.translate(0, 5); ctx.scale(sc, sc); ctx.translate(0, -5);
       ctx.globalAlpha = a * deco * 0.6;
-      ctx.fillStyle = 'rgb(0,22,27)';                   // disco oscuro para que el sello resalte sobre el paisaje
+      ctx.fillStyle = 'rgb(12,27,44)';                   // disco oscuro para que el sello resalte sobre el paisaje
       ctx.beginPath(); ctx.arc(-0.4, 2.8, 92, 0, Math.PI * 2); ctx.fill();
       ctx.save();
       ctx.beginPath(); ctx.arc(-0.4, 2.8, 92, 0, Math.PI * 2); ctx.clip();
@@ -256,7 +256,7 @@
     ctx.save();
     ctx.globalAlpha = a;
     ctx.fillStyle = w.color;
-    ctx.shadowColor = 'rgba(0,14,18,.95)'; ctx.shadowBlur = 28;
+    ctx.shadowColor = 'rgba(6,13,26,.95)'; ctx.shadowBlur = 28;
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.font = fontOf(w, size.toFixed(1));
     var x = vx - (mx * R * 0.1) / d, y = vy - (my * R * 0.06) / d - 6 * k;

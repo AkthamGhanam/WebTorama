@@ -1,4 +1,4 @@
-/* Noticiero: listado con búsqueda y categorías, y vista de lectura (?n=slug). */
+/* Blog: listado con búsqueda y categorías, y vista de lectura (?n=slug). */
 (function () {
   'use strict';
   var T = window.Torama, esc = T.esc;
@@ -49,11 +49,11 @@
   buscar.addEventListener('input', function () { texto = buscar.value.trim(); pintarLista(); });
 
   function pintarDetalle(n) {
-    document.title = n.titulo + ' · Noticiero Torama';
-    var url = location.href, t = encodeURIComponent(n.titulo + ' · Noticiero Torama'), u = encodeURIComponent(url);
+    document.title = n.titulo + ' · Blog de Torama';
+    var url = location.href, t = encodeURIComponent(n.titulo + ' · Blog de Torama'), u = encodeURIComponent(url);
     var otras = noticias.filter(function (o) { return o.slug !== n.slug; }).slice(0, 3);
     detalle.innerHTML =
-      '<a class="back" href="noticias.html">← Volver al Noticiero</a>' +
+      '<a class="back" href="noticias.html">← Volver al Blog</a>' +
       '<header class="detail__head">' + (n.categoria ? '<span class="tag tag--solid">' + esc(n.categoria) + '</span>' : '') +
       '<h1 class="title">' + esc(n.titulo) + '</h1>' + (n.extracto ? '<p class="detail__lead">' + esc(n.extracto) + '</p>' : '') +
       '<p class="byline"><span class="avatar">' + esc(T.iniciales(n.autor)) + '</span><span>Creado por <b>' + esc(n.autor || 'Torama Agency') + '</b>' +
@@ -65,7 +65,7 @@
       '<a href="https://www.facebook.com/sharer/sharer.php?u=' + u + '" target="_blank" rel="noopener">Facebook</a>' +
       '<a href="https://twitter.com/intent/tweet?text=' + t + '&url=' + u + '" target="_blank" rel="noopener">X</a>' +
       '<button type="button" id="copiar">Copiar enlace</button></div>' +
-      (otras.length ? '<h2 class="detail__more">Más noticias</h2><div class="grid grid--noticias">' + otras.map(function (o) { return tarjeta(o); }).join('') + '</div>' : '');
+      (otras.length ? '<h2 class="detail__more">Más entradas</h2><div class="grid grid--noticias">' + otras.map(function (o) { return tarjeta(o); }).join('') + '</div>' : '');
     var copiar = document.getElementById('copiar');
     copiar.addEventListener('click', function () {
       (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(function () { copiar.textContent = '¡Enlace copiado!'; }, function () { copiar.textContent = url; });
@@ -82,6 +82,6 @@
     if (n) { pintarDetalle(n); return; }
     pintarFiltros(); pintarLista();
   }).catch(function () {
-    grid.innerHTML = '<p class="empty">No pudimos cargar las noticias. Vuelve a intentarlo en un momento.</p>';
+    grid.innerHTML = '<p class="empty">No pudimos cargar el blog. Vuelve a intentarlo en un momento.</p>';
   });
 })();

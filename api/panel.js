@@ -19,7 +19,7 @@ const REPO = process.env.GITHUB_REPO || 'AkthamGhanam/WebTorama';
 const BRANCH = process.env.GITHUB_BRANCH || 'main';
 const PUBLISH = process.env.PUBLISH_BRANCH === undefined ? 'gh-pages' : process.env.PUBLISH_BRANCH;
 const API = 'https://api.github.com/repos/' + REPO;
-const TIPOS = { noticias: 'noticia', casos: 'caso' };
+const TIPOS = { noticias: 'entrada del blog', casos: 'caso' };
 const CATEGORIAS = ['meta-ads', 'audiovisual', 'contenido', 'ia', 'fotografia', 'diseno', 'auditoria', 'formaciones'];
 const RUTA_MEDIA = /^content\/media\/(noticias|casos)\/[a-z0-9][a-z0-9-]{0,80}\.(webp|jpg|jpeg|png)$/;
 const MAX_IMAGEN = 3.5 * 1024 * 1024;        // en base64

@@ -1,11 +1,11 @@
 {
   "items": [
     {
-      "id": "bienvenidos-al-noticiero-torama",
-      "slug": "bienvenidos-al-noticiero-torama",
-      "titulo": "Bienvenidos al Noticiero Torama",
+      "id": "bienvenidos-al-blog-de-torama",
+      "slug": "bienvenidos-al-blog-de-torama",
+      "titulo": "Bienvenidos al Blog de Torama",
       "extracto": "Abrimos este espacio para contar lo que pasa dentro de Torama: proyectos, aprendizajes y novedades del equipo.",
-      "cuerpo": "Este es el **Noticiero Torama**, el espacio donde el equipo comparte lo que va pasando dentro de la agencia.\n\n## Qué vas a encontrar aquí\n\n- Novedades de nuestros proyectos y campañas.\n- Aprendizajes sobre Meta Ads, contenido, producción audiovisual y diseño.\n- Noticias del equipo y de las marcas con las que trabajamos.\n\n## ¿Tienes una noticia?\n\nSi quieres que publiquemos la tuya, envíala desde el formulario que está al final de la página del Noticiero. La revisamos y sale publicada con tu nombre.\n\n> Estamos para crecer juntos.",
+      "cuerpo": "Este es el **Blog de Torama**, el espacio donde el equipo comparte lo que va pasando dentro de la agencia.\n\n## Qué vas a encontrar aquí\n\n- Novedades de nuestros proyectos y campañas.\n- Aprendizajes sobre Meta Ads, contenido, producción audiovisual y diseño.\n- Novedades del equipo y de las marcas con las que trabajamos.\n\n## ¿Tienes una nota de prensa?\n\nSi quieres que publiquemos la tuya, envíala desde el formulario que está al final de la página del Blog. La revisamos y sale publicada con tu nombre.\n\n> Estamos para crecer juntos.",
       "portada": "assets/img/equipo.webp",
       "categoria": "Equipo",
       "autor": "Torama Agency",

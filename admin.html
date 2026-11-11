@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Panel del equipo · Torama Agency</title>
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#00242b">
+  <meta name="theme-color" content="#12283f">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,8 +20,8 @@
     <form class="login__card form" id="login-form" autocomplete="off" novalidate>
       <svg class="login__mark" viewBox="-112 -112 224 224" aria-hidden="true"><g fill="none" stroke="#78ffc0" stroke-width="6"><circle cx="0" cy="5" r="94"/></g><g fill="#fff" data-torii="gate"></g></svg>
       <p class="kicker">Panel del equipo</p>
-      <h1 class="title">Noticiero y <em>casos</em></h1>
-      <p class="login__lead" id="login-lead">Publica noticias y casos de éxito en la web de Torama. Entra con tu nombre y la clave del equipo.</p>
+      <h1 class="title">Blog y <em>casos</em></h1>
+      <p class="login__lead" id="login-lead">Publica entradas del blog y casos de éxito en la web de Torama. Entra con tu nombre y la clave del equipo.</p>
       <label class="field field--ico"><svg class="field__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><input type="text" id="nombre" name="nombre" placeholder="Así firmarás lo que publiques" required autocomplete="name"><span>Tu nombre</span></label>
       <label class="field field--ico field--secret"><svg class="field__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><input type="password" id="clave" name="clave" placeholder="Pídesela al administrador" required spellcheck="false" autocomplete="off"><span id="clave-label">Clave del equipo</span>
         <button type="button" class="field__eye" aria-label="Mostrar" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12c2.5-5 6-7.5 10-7.5S19.5 7 22 12c-2.5 5-6 7.5-10 7.5S4.5 17 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></label>
@@ -50,7 +50,7 @@
         <span class="brand__name">Torama <b>Panel</b></span>
       </a>
       <nav class="tabs" id="tabs" aria-label="Secciones">
-        <button data-tipo="noticias" class="is-on">Noticiero</button>
+        <button data-tipo="noticias" class="is-on">Blog</button>
         <button data-tipo="casos">Casos de éxito</button>
       </nav>
       <div class="abar__user">
@@ -64,7 +64,7 @@
       <section id="vista-lista">
         <div class="ahead">
           <div>
-            <h1 class="title" id="lista-titulo">Noticiero</h1>
+            <h1 class="title" id="lista-titulo">Blog</h1>
             <p id="lista-sub"></p>
           </div>
           <div class="ahead__tools">
@@ -72,7 +72,7 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
               <input type="search" id="abuscar" placeholder="Buscar…">
             </label>
-            <button class="btn btn--red" id="nuevo" type="button">+ Nueva noticia</button>
+            <button class="btn btn--red" id="nuevo" type="button">+ Nueva entrada</button>
           </div>
         </div>
         <ul class="rows" id="rows"></ul>

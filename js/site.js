@@ -12,7 +12,7 @@
     ['index.html#nosotros', 'Quiénes somos', ''],
     ['casos.html', 'Casos de éxito', 'casos'],
     ['index.html#servicios', 'Servicios', ''],
-    ['noticias.html', 'Noticiero', 'noticias']
+    ['noticias.html', 'Blog', 'noticias']
   ];
 
   var defs = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' +
@@ -38,7 +38,7 @@
     '<div class="menu" id="menu" aria-hidden="true">' +
     '<svg class="menu__gate" viewBox="-112 -112 224 224" aria-hidden="true"><use href="#torama-mark"/></svg>' +
     '<nav aria-label="Menú"><a href="index.html"><i>00</i>Inicio</a><a href="index.html#nosotros"><i>01</i>Quiénes somos</a><a href="casos.html"><i>02</i>Casos de éxito</a>' +
-    '<a href="index.html#servicios"><i>03</i>Servicios</a><a href="noticias.html"><i>04</i>Noticiero</a><a href="index.html#contacto"><i>05</i>Contacto</a></nav>' +
+    '<a href="index.html#servicios"><i>03</i>Servicios</a><a href="noticias.html"><i>04</i>Blog</a><a href="index.html#contacto"><i>05</i>Contacto</a></nav>' +
     '<p class="menu__foot"><a href="https://wa.me/13106906822" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.instagram.com/toramaagency" target="_blank" rel="noopener">Instagram</a><a href="mailto:Toramaagency@gmail.com">Correo</a></p></div>';
 
   var footer = '<footer class="foot" id="pie">' +
@@ -54,7 +54,7 @@
     '<li><a href="https://www.facebook.com/Toramaagency" target="_blank" rel="noopener" aria-label="Facebook Torama Agency"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 21v-8h3l.5-3.5H14V7.6c0-1 .4-1.6 1.7-1.600h1.800V3.100C17 3 16 3 15 3c-2.6 0-4.2 1.6-4.2 4.300v2.200H8V13h2.800v8"/></svg></a></li>' +
     '<li><a href="https://wa.me/13106906822" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4.300A8 8 0 1 1 8.6 19L4 20z"/></svg></a></li>' +
     '<li><a href="mailto:Toramaagency@gmail.com" aria-label="Correo electrónico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.500l8 6 8-6"/></svg></a></li></ul></div>' +
-    '<nav class="foot__col" aria-label="Explora"><h3>Explora</h3><a href="index.html">Inicio</a><a href="index.html#nosotros">Quiénes somos</a><a href="casos.html">Casos de éxito</a><a href="index.html#servicios">Servicios</a><a href="noticias.html">Noticiero</a></nav>' +
+    '<nav class="foot__col" aria-label="Explora"><h3>Explora</h3><a href="index.html">Inicio</a><a href="index.html#nosotros">Quiénes somos</a><a href="casos.html">Casos de éxito</a><a href="index.html#servicios">Servicios</a><a href="noticias.html">Blog</a></nav>' +
     '<div class="foot__col"><h3>Servicios</h3><a href="index.html#servicios">Meta Ads</a><a href="index.html#servicios">Producción audiovisual</a><a href="index.html#servicios">Creación de contenido</a><a href="index.html#servicios">Contenido con IA</a><a href="index.html#servicios">Fotografía y diseño gráfico</a><a href="index.html#servicios">Auditoría y formaciones</a></div>' +
     '<div class="foot__col"><h3>Contacto</h3><a href="https://wa.me/13106906822" target="_blank" rel="noopener">+1 (310) 690-6822</a><a href="mailto:Toramaagency@gmail.com">Toramaagency@gmail.com</a><p>Lunes a viernes · 9:00 am a 5:00 pm</p><p>Valencia, Venezuela<br>San Diego, Urb. La Esmeralda</p><p class="foot__remote">Llegamos a donde tú nos llames</p></div>' +
     '</div></div>' +
