@@ -49,6 +49,9 @@ Los borradores no se muestran en la web, pero al ser un repositorio público sí
    | `TEAM_KEY` | La clave que usará el equipo para entrar al panel. Larga y difícil de adivinar. |
    | `GITHUB_TOKEN` | El token del paso 2. |
    | `PUBLISH_BRANCH` | Opcional. Déjala vacía si ya no se usa GitHub Pages; por defecto pone al día `gh-pages`. |
+   | `CONTACT_TO` | Buzón que recibe los formularios, p. ej. `Contenido.toramaagency@gmail.com`. |
+   | `GMAIL_USER` | Opcional. Cuenta de Gmail que envía los formularios. |
+   | `GMAIL_APP_PASSWORD` | Opcional. Contraseña de aplicación de esa cuenta (ver "Formularios"). |
 
 4. Vuelve a desplegar (**Deployments → Redeploy**) para que tome las variables.
 
@@ -56,7 +59,14 @@ Para cambiar la clave del equipo basta con cambiar `TEAM_KEY` y volver a despleg
 
 ## Formularios
 
-Los formularios (contacto y "Envía tu nota de prensa") llegan a `Contenido.toramaagency@gmail.com` a través de [FormSubmit](https://formsubmit.co), sin servidor propio. La primera vez que alguien envíe un formulario, FormSubmit manda a ese buzón un correo de activación que hay que confirmar una sola vez. Si el envío falla, el formulario ofrece mandarlo por correo o WhatsApp.
+Los formularios (contacto y "Envía tu nota de prensa") se envían a la función propia `api/contacto.js`, en el mismo dominio de la web. Así el visitante no necesita poder abrir ningún servicio externo (formsubmit.co, por ejemplo, no carga desde algunas redes). La función entrega el mensaje por correo de una de estas dos formas:
+
+1. **Gmail (recomendada).** Si están `GMAIL_USER` y `GMAIL_APP_PASSWORD`, envía con esa cuenta. No necesita activación y la respuesta va directa al visitante ("Responder").
+2. **FormSubmit (respaldo).** Sin credenciales de Gmail, reenvía a [FormSubmit](https://formsubmit.co) desde el servidor. La primera vez FormSubmit manda al buzón de destino un correo «Activate Form» que hay que confirmar una sola vez.
+
+Donde no hay servidor (GitHub Pages, `python3 -m http.server`) el formulario va directo a FormSubmit con el buzón de `T.EMAIL` (`js/content.js`). Si el envío falla, ofrece mandarlo por correo o WhatsApp.
+
+Para la contraseña de aplicación de Gmail: **Cuenta de Google → Seguridad → Verificación en dos pasos** (activada) **→ Contraseñas de aplicaciones**, crea una llamada "Web Torama" y copia los 16 caracteres en `GMAIL_APP_PASSWORD`.
 
 ## Estructura
 
@@ -68,6 +78,7 @@ Los formularios (contacto y "Envía tu nota de prensa") llegan a `Contenido.tora
 - `js/site.js` — cabecera, menú y pie de las páginas interiores.
 - `js/casos.js`, `js/noticias.js`, `js/admin.js` — lógica de cada página.
 - `api/panel.js` — función de servidor (Vercel) que valida la clave del equipo y publica en el repositorio.
+- `api/contacto.js` — función de servidor que recibe los formularios y los envía por correo.
 - `api/seo.js` — genera `/sitemap.xml` (páginas, noticias y casos publicados) y `/robots.txt` con el dominio en uso.
 - `assets/` — fotos, logos y tipografías.
 

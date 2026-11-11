@@ -1,0 +1,8 @@
+{
+  "name": "webtorama",
+  "private": true,
+  "description": "Web de Torama Agency: sitio estático con funciones de servidor en /api (Vercel).",
+  "dependencies": {
+    "nodemailer": "^10.5.0"
+  }
+}

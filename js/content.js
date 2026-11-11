@@ -5,9 +5,10 @@
 
   var T = (window.Torama = window.Torama || {});
 
-  // TEMPORAL: correo de prueba para activar el formulario desde Vercel.
-  // Volver a 'Contenido.toramaagency@gmail.com' al terminar la prueba.
-  T.EMAIL = 'ghanamaktham@gmail.com';
+  // Buzón público de los formularios: enlace "Envíalo por correo" y envío directo
+  // donde no hay servidor (GitHub Pages). En Vercel el destino lo decide
+  // api/contacto.js (variable CONTACT_TO).
+  T.EMAIL = 'Contenido.toramaagency@gmail.com';
   T.CATEGORIAS = {
     'meta-ads': 'Meta Ads',
     'audiovisual': 'Producción audiovisual',
@@ -151,50 +152,63 @@
     });
   };
 
-  /* Formularios que llegan por correo (servicio FormSubmit, sin servidor propio). */
+  /* Formularios que llegan por correo. En Vercel se envían a la función propia
+     /api/contacto (mismo dominio); sin servidor, directo a FormSubmit. */
   T.formulario = function (form) {
     var estado = form.querySelector('.form__status');
     var boton = form.querySelector('[type="submit"]');
     function decir(tipo, html) { estado.className = 'form__status is-' + tipo; estado.innerHTML = html; }
 
+    function directo(m) {
+      var datos = {};
+      m.campos.forEach(function (c) { datos[c[0]] = c[1]; });
+      if (m.email) datos.email = m.email;
+      datos._subject = m.asunto; datos._template = 'table'; datos._captcha = 'false';
+      return fetch('https://formsubmit.co/ajax/' + T.EMAIL, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(datos)
+      }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok && String(j.success) === 'true', activacion: /activ/i.test(String(j.message || '')) }; }); });
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!T.validar(form)) return;
-      var datos = {}, cuerpo = [], orden = [];
+      var m = { asunto: form.getAttribute('data-subject') || 'Mensaje desde la web de Torama', email: '', campos: [], _honey: '' };
+      var orden = [], valores = {};
       Array.prototype.forEach.call(form.elements, function (el) {
         if (!el.name || el.type === 'submit' || el.tagName === 'FIELDSET') return;
-        if (el.name === '_honey') { datos._honey = el.value; return; }
+        if (el.name === '_honey') { m._honey = el.value; return; }
+        if (el.type === 'email' && !m.email) m.email = el.value.trim();
         var etiqueta = el.getAttribute('data-label') || el.name;
+        if (orden.indexOf(etiqueta) < 0) { orden.push(etiqueta); valores[etiqueta] = ''; }
         if (el.type === 'checkbox') {
-          if (orden.indexOf(etiqueta) < 0) { orden.push(etiqueta); datos[etiqueta] = ''; }
-          if (el.checked) datos[etiqueta] += (datos[etiqueta] ? ', ' : '') + el.value;
+          if (el.checked) valores[etiqueta] += (valores[etiqueta] ? ', ' : '') + el.value;
           return;
         }
-        orden.push(etiqueta); datos[etiqueta] = el.value;
+        valores[etiqueta] = el.value.trim();
       });
-      if (datos._honey) return;                          // trampa para bots
-      orden.forEach(function (k) { if (datos[k]) cuerpo.push(k + ': ' + datos[k]); });
-      datos._subject = form.getAttribute('data-subject') || 'Mensaje desde la web de Torama';
-      datos._template = 'table';
-      datos._captcha = 'false';
+      if (m._honey) return;                              // trampa para bots
+      orden.forEach(function (k) { if (valores[k]) m.campos.push([k, valores[k]]); });
 
-      var mailto = 'mailto:' + T.EMAIL + '?subject=' + encodeURIComponent(datos._subject) + '&body=' + encodeURIComponent(cuerpo.join('\n'));
+      var cuerpo = m.campos.map(function (c) { return c[0] + ': ' + c[1]; });
+      var mailto = 'mailto:' + T.EMAIL + '?subject=' + encodeURIComponent(m.asunto) + '&body=' + encodeURIComponent(cuerpo.join('\n'));
       var fallo = 'No pudimos enviarlo desde aquí. <a href="' + T.esc(mailto) + '">Envíalo por correo</a> o escríbenos por <a href="https://wa.me/13106906822" target="_blank" rel="noopener">WhatsApp</a>.';
       boton.disabled = true;
       decir('wait', 'Enviando…');
-      fetch('https://formsubmit.co/ajax/' + T.EMAIL, {
-        method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(datos)
-      }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
-        .then(function (res) {
-          boton.disabled = false;
-          if (res.ok && String(res.j.success) === 'true') {
-            form.reset();
-            decir('ok', form.getAttribute('data-ok') || '¡Mensaje enviado! Te responderemos muy pronto.');
-          } else if (/activ/i.test(String(res.j.message || ''))) {
-            // Primera vez con este buzón: FormSubmit exige confirmar un correo antes de entregar mensajes.
-            decir('error', 'Falta activar el formulario: FormSubmit acaba de enviar un correo a <b>' + T.esc(T.EMAIL) + '</b>. Ábrelo (mira también en Spam), pulsa «Activate Form» y vuelve a enviar.');
-          } else { decir('error', fallo); }
-        }).catch(function () { boton.disabled = false; decir('error', fallo); });
+
+      fetch('/api/contacto', {
+        method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(m)
+      }).then(function (r) {
+        if (r.status === 404 || r.status === 405) return directo(m);   // sin servidor (GitHub Pages, local)
+        return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok && j.ok === true, activacion: !!j.activacion, error: j.error }; });
+      }).then(function (res) {
+        boton.disabled = false;
+        if (res.ok) {
+          form.reset();
+          decir('ok', form.getAttribute('data-ok') || '¡Mensaje enviado! Te responderemos muy pronto.');
+        } else if (res.activacion) {
+          decir('error', 'El formulario aún se está activando. Mientras tanto, <a href="' + T.esc(mailto) + '">envíalo por correo</a> o escríbenos por <a href="https://wa.me/13106906822" target="_blank" rel="noopener">WhatsApp</a>.');
+        } else { decir('error', fallo); }
+      }).catch(function () { boton.disabled = false; decir('error', fallo); });
     });
   };
 
