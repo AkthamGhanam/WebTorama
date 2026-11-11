@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Torama Agency · Juntos hacemos marketing de resultados</title>
   <meta name="description" content="Torama Agency es una agencia de comunicación y publicidad digital que acompaña a marcas en Venezuela y a nivel internacional: Meta Ads, creación de contenido, producción audiovisual y diseño gráfico.">
-  <meta name="theme-color" content="#0b1a2b">
+  <meta name="theme-color" content="#00242b">
   <meta property="og:title" content="Torama Agency · Marketing de resultados">
   <meta property="og:description" content="Cruza la puerta. Campañas de Meta Ads, contenido, producción audiovisual y diseño gráfico con propuestas 100% personalizadas.">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -65,23 +65,24 @@
   <!-- Definición única del sello (se reutiliza en toda la página) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
-      <linearGradient id="tg-band" x1="0" y1="1" x2="1" y2="0">
-        <stop offset="0" stop-color="#1a3d87"/><stop offset=".55" stop-color="#2456b8"/><stop offset="1" stop-color="#49d3de"/>
+      <linearGradient id="tg-band" gradientUnits="userSpaceOnUse" x1="-90" y1="40" x2="95" y2="-40">
+        <stop offset="0" stop-color="#0a5a58"/><stop offset=".55" stop-color="#35c79a"/><stop offset="1" stop-color="#78ffc0"/>
       </linearGradient>
       <linearGradient id="chart-fill" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#2fe0e8" stop-opacity=".35"/><stop offset="1" stop-color="#2fe0e8" stop-opacity="0"/>
+        <stop offset="0" stop-color="#78ffc0" stop-opacity=".35"/><stop offset="1" stop-color="#78ffc0" stop-opacity="0"/>
       </linearGradient>
       <linearGradient id="chart-line" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stop-color="#2fe0e8"/><stop offset="1" stop-color="#e6414c"/>
+        <stop offset="0" stop-color="#78ffc0"/><stop offset="1" stop-color="#e6414c"/>
       </linearGradient>
-      <clipPath id="tg-clip"><circle cx="0" cy="5" r="94"/></clipPath>
+      <clipPath id="tg-clip"><circle cx="-.4" cy="2.8" r="92"/></clipPath>
+      <!-- Imagotipo: aurora (camino) + círculo (unión) + torii (portal) -->
       <g id="torama-mark">
         <g clip-path="url(#tg-clip)">
-          <path d="M-70 80 L100 -62 L100 -8 L-20 92 Z" fill="url(#tg-band)"/>
-          <path d="M20 -40 L100 -100 L100 -66 L52 -30 Z" fill="#49d3de" opacity=".85"/>
+          <path d="M-94 8 C-60 40 -30 30 0 5 C30 -20 60 -40 96 -48 L96 -6 C60 0 35 16 5 40 C-25 62 -60 64 -90 44 Z" fill="url(#tg-band)"/>
+          <path d="M14 -44 C44 -62 70 -70 96 -74 L96 -52 C70 -48 50 -40 30 -27 Z" fill="#c4ffe4" opacity=".8"/>
         </g>
-        <path d="M 48 88.1 A 96 96 0 1 1 83.1 53" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/>
-        <g fill="#fff" data-torii="logo"></g>
+        <g fill="#fff" data-torii="ring"></g>
+        <g fill="#fff" data-torii="gate"></g>
       </g>
       <g id="torama-gate" data-torii="gate"></g>
     </defs>
@@ -92,9 +93,7 @@
     <section class="stage" id="inicio" aria-label="Inicio">
       <div class="stage__pin">
         <div class="hero" id="hero">
-          <div class="hero__mark" aria-hidden="true">
-            <p class="wordmark">Torama<b>Agency</b></p>
-          </div>
+          <svg class="wordmark" viewBox="-104 106 196 86" role="img" aria-label="Torama Agency"><g fill="#fff" data-torii="word"></g></svg>
           <div class="hero__copy">
             <p class="eyebrow">Estamos para crecer juntos</p>
             <h1><span class="thin">Juntos hacemos</span> Marketing de resultados</h1>
@@ -182,7 +181,7 @@
               <g class="chart__grid"><path d="M30 60H620M30 130H620M30 200H620M30 270H620M30 330H620"/></g>
               <path class="chart__area" d="M30 322 C150 316 200 262 300 226 S470 120 610 40 L610 330 L30 330 Z" fill="url(#chart-fill)"/>
               <path class="chart__line" pathLength="1" d="M30 322 C150 316 200 262 300 226 S470 120 610 40" stroke="url(#chart-line)"/>
-              <g class="chart__pt" style="--d:.2s"><circle cx="30" cy="322" r="6"/><text x="44" y="292">$112,06 invertidos</text></g>
+              <g class="chart__pt" style="--d:.2s"><circle cx="30" cy="322" r="6"/><text x="40" y="282">$112,06 invertidos</text></g>
               <g class="chart__pt" style="--d:.9s"><circle cx="300" cy="226" r="6"/><text x="312" y="252">678 mensajes</text></g>
               <g class="chart__pt" style="--d:1.5s"><circle cx="470" cy="128" r="6"/><text x="482" y="154">217 ventas</text></g>
               <g class="chart__pt chart__pt--hot" style="--d:2s"><circle class="chart__pulse" cx="610" cy="40" r="10"/><circle cx="610" cy="40" r="8"/><text x="596" y="30" text-anchor="end">+700% de retorno</text></g>

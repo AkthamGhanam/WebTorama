@@ -23,8 +23,15 @@ y abrir `http://localhost:8000`.
 - `js/main.js` — navegación, ambientes por sección, revelados, contadores tipo odómetro, galería horizontal de servicios, marquesina y menú.
 - `assets/` — fotos y logos recortados de la exportación de Canva.
 
+## Marca
+
+Colores, tipografía e imagotipo salen del manual corporativo:
+
+- Verde `#78ffc0`, teal oscuro `#00242b`, blanco y negro, más el coral `#e6414c` como contraste. El morado `#6750d6` del manual no se usa.
+- Tipografía Caviar Dreams (`assets/fonts/`) para el logotipo y los textos finos; Poppins para títulos y cuerpo.
+- El torii, el círculo y el logotipo "Torama Agency" son los trazados vectoriales del manual (`js/torii.js`). La aurora del sello está redibujada en verde.
+
 ## Pendiente
 
-- Sustituir los logos de clientes (`assets/clientes/`) y las fotos por los archivos originales: los actuales son recortes de la exportación del diseño.
-- El sello está redibujado en vectores; conviene reemplazarlo por el logo oficial en SVG.
-- Páginas internas: Quiénes somos, Servicios, Casos de éxito y Contacto (el texto ya está extraído del diseño).
+- Sustituir los logos de clientes (`assets/clientes/`) y las fotos por los archivos originales: los actuales son recortes de la exportación de Canva.
+- Páginas internas: Quiénes somos, Servicios, Casos de éxito y Contacto.
