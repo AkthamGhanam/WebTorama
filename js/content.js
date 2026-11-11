@@ -190,6 +190,9 @@
           if (res.ok && String(res.j.success) === 'true') {
             form.reset();
             decir('ok', form.getAttribute('data-ok') || '¡Mensaje enviado! Te responderemos muy pronto.');
+          } else if (/activ/i.test(String(res.j.message || ''))) {
+            // Primera vez con este buzón: FormSubmit exige confirmar un correo antes de entregar mensajes.
+            decir('error', 'Falta activar el formulario: FormSubmit acaba de enviar un correo a <b>' + T.esc(T.EMAIL) + '</b>. Ábrelo (mira también en Spam), pulsa «Activate Form» y vuelve a enviar.');
           } else { decir('error', fallo); }
         }).catch(function () { boton.disabled = false; decir('error', fallo); });
     });
