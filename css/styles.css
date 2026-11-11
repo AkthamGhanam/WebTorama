@@ -434,33 +434,98 @@ html.rm .totop svg { animation: none; }
   .foot__grid { grid-template-columns: 1fr; }
 }
 
-/* ---------- Formularios (contacto y envío de noticias) ---------- */
-.form { display: grid; gap: 14px; text-align: left; }
-.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.form label { display: grid; gap: 6px; font-size: .82rem; letter-spacing: .06em; color: var(--cyan); }
-.form label small { letter-spacing: 0; opacity: .75; color: var(--ink); }
-.form input, .form textarea, .form select { width: 100%; font: inherit; font-size: 1rem; letter-spacing: 0; color: #fff; padding: 14px 18px; border-radius: 18px;
-  border: 1px solid var(--line); background: rgba(0, 15, 19, .55); outline: 0; transition: border-color .3s, box-shadow .3s, background .3s; }
-.form textarea { resize: vertical; min-height: 130px; line-height: 1.5; }
-.form select { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--cyan) 50%), linear-gradient(135deg, var(--cyan) 50%, transparent 50%);
-  background-position: calc(100% - 22px) 55%, calc(100% - 16px) 55%; background-size: 6px 6px; background-repeat: no-repeat; }
-.form select option { color: #000; }
-.form ::placeholder { color: rgba(223, 229, 234, .45); }
-.form input:focus, .form textarea:focus, .form select:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(120, 255, 192, .2); background: rgba(0, 15, 19, .8); }
-.form button { border: 0; cursor: pointer; font: inherit; font-weight: 500; justify-self: start; }
-.form button[disabled] { opacity: .6; cursor: progress; }
+/* ---------- Formularios: campos con etiqueta flotante ---------- */
+.form { display: grid; gap: 16px; text-align: left; }
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
-.form__status { min-height: 1.5em; font-size: .92rem; }
+
+.field { position: relative; display: block; min-width: 0; }
+.field > input, .field > textarea, .field > select {
+  display: block; width: 100%; font: inherit; font-size: 1rem; line-height: 1.4; color: #fff; padding: 27px 18px 11px; border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, .12); background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .03));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06); outline: 0; -webkit-appearance: none; appearance: none;
+  transition: border-color .3s, box-shadow .35s, background .3s; }
+.field > textarea { resize: vertical; min-height: 140px; line-height: 1.55; padding-top: 32px; }
+.field > select { cursor: pointer; padding-right: 46px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2378ffc0' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"), linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .03));
+  background-repeat: no-repeat; background-position: right 16px center, 0 0; background-size: 20px, auto; }
+.field > select option { color: #00242b; }
+.field > input[type="date"] { color-scheme: dark; }
+/* Etiqueta: descansa dentro del campo y sube al escribir o enfocar */
+.field > span { position: absolute; left: 19px; top: 19px; right: 18px; font-size: 1rem; line-height: 1.3; color: rgba(223, 229, 234, .68); pointer-events: none;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transform-origin: left top; transition: transform .28s var(--ease), color .28s; }
+.field > span small { font-size: .85em; opacity: .75; }
+.field > :focus ~ span, .field > input:not(:placeholder-shown) ~ span, .field > textarea:not(:placeholder-shown) ~ span, .field--up > span { transform: translateY(-11px) scale(.74); color: var(--cyan); letter-spacing: .05em; }
+.field > ::placeholder { color: transparent; transition: color .25s; }
+.field > :focus::placeholder { color: rgba(223, 229, 234, .4); }
+/* Línea de luz que se dibuja al enfocar */
+.field::after { content: ''; position: absolute; left: 20px; right: 20px; bottom: 0; height: 2px; border-radius: 2px; pointer-events: none;
+  background: linear-gradient(90deg, var(--cyan), var(--red)); transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease); }
+.field:focus-within::after { transform: scaleX(1); }
+.field > input:hover, .field > textarea:hover, .field > select:hover { border-color: rgba(255, 255, 255, .24); }
+.field > :focus { border-color: rgba(120, 255, 192, .6); background-color: rgba(0, 15, 19, .5); box-shadow: 0 14px 34px rgba(0, 0, 0, .3), 0 0 0 4px rgba(120, 255, 192, .1); }
+.field > input:-webkit-autofill { -webkit-text-fill-color: #fff; -webkit-box-shadow: 0 0 0 60px #06343b inset; caret-color: #fff; }
+/* Icono a la izquierda */
+.field--ico > input { padding-left: 52px; }
+.field--ico > span { left: 53px; }
+.field__ico { position: absolute; left: 18px; top: 21px; width: 22px; height: 22px; fill: none; stroke: rgba(223, 229, 234, .55); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; transition: stroke .3s; }
+.field:focus-within .field__ico { stroke: var(--cyan); }
+/* Mostrar u ocultar una clave */
+.field--secret > input { padding-right: 54px; }
+.field__eye { position: absolute; right: 10px; top: 10px; width: 40px; height: 40px; border-radius: 50%; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+.field__eye svg { width: 22px; height: 22px; fill: none; stroke: rgba(223, 229, 234, .6); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.field__eye:hover svg, .field__eye[aria-pressed="true"] svg { stroke: var(--cyan); }
+/* Error de validación */
+.field.is-bad > input, .field.is-bad > textarea, .field.is-bad > select { border-color: rgba(230, 65, 76, .85); box-shadow: 0 0 0 4px rgba(230, 65, 76, .12); }
+.field.is-bad > span { color: #ff9aa1; }
+.field__err { display: block; margin: 6px 6px 0; font-size: .78rem; line-height: 1.3; color: #ff9aa1; }
+.field.is-bad::after { display: none; }
+
+/* Opciones en píldoras (selección múltiple) */
+.pick { margin: 0; padding: 0; border: 0; min-width: 0; }
+.pick legend { padding: 0; margin-bottom: 10px; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--cyan); }
+.pick__opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { position: relative; cursor: pointer; }
+.pill input { position: absolute; opacity: 0; width: 100%; height: 100%; inset: 0; margin: 0; cursor: pointer; }
+.pill span { display: block; padding: 8px 16px; border-radius: 99px; font-size: .88rem; color: var(--ink); border: 1px solid rgba(255, 255, 255, .14); background: rgba(255, 255, 255, .05);
+  transition: background .3s, color .3s, border-color .3s, transform .3s var(--ease), box-shadow .3s; }
+.pill:hover span { border-color: var(--cyan); transform: translateY(-2px); }
+.pill input:checked + span { background: var(--cyan); border-color: var(--cyan); color: var(--abyss); font-weight: 500; box-shadow: 0 0 22px rgba(120, 255, 192, .4); }
+.pill input:focus-visible + span { outline: 3px solid var(--cyan); outline-offset: 3px; }
+
+/* Interruptor */
+.switch { display: inline-flex; align-items: center; gap: 12px; cursor: pointer; font-size: .92rem; color: var(--ink); }
+.switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.switch i { flex: none; position: relative; width: 46px; height: 26px; border-radius: 99px; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .14); transition: background .3s, border-color .3s; }
+.switch i::after { content: ''; position: absolute; left: 3px; top: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform .35s var(--ease), background .3s; }
+.switch input:checked + i { background: rgba(120, 255, 192, .28); border-color: var(--cyan); }
+.switch input:checked + i::after { transform: translateX(20px); background: var(--cyan); }
+.switch input:focus-visible + i { outline: 3px solid var(--cyan); outline-offset: 3px; }
+
+/* Botón de envío con flecha y estado de carga */
+.form button { font-family: inherit; cursor: pointer; }
+button.btn { font: inherit; font-weight: 500; }
+.btn--send { border: 0; font-weight: 500; gap: 12px; justify-self: start; padding-right: 14px; }
+.btn--send svg { width: 34px; height: 34px; padding: 8px; border-radius: 50%; background: rgba(255, 255, 255, .2); fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform .4s var(--ease); }
+.btn--send:hover svg { transform: translateX(4px); }
+.btn--send[disabled] { cursor: progress; opacity: .85; }
+.btn--send[disabled] svg { animation: spin 1s linear infinite; }
+.btn--send[disabled] svg path { d: path('M12 4a8 8 0 1 0 8 8'); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.form__status { font-size: .92rem; }
+.form__status:empty { display: none; }
+.form__status.is-ok, .form__status.is-error, .form__status.is-wait { padding: 12px 18px; border-radius: 16px; border: 1px solid var(--line); background: rgba(120, 255, 192, .08); }
 .form__status.is-ok { color: var(--cyan); font-weight: 500; }
-.form__status.is-error { color: #ff9aa1; }
+.form__status.is-ok::before { content: '✓  '; }
+.form__status.is-error { color: #ffb3b8; border-color: rgba(230, 65, 76, .5); background: rgba(230, 65, 76, .1); }
 .form__status a { color: #fff; }
 
 .contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: center; text-align: left; }
 .contact .title--xl { font-size: clamp(2rem, 4.6vw, 4.2rem); }
-.contact__card { padding: clamp(22px, 3vw, 40px); border-radius: 40px; background: var(--glass); border: 1px solid var(--line);
-  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 30px 80px rgba(0, 0, 0, .4); }
-.contact__card h3 { font-size: 1.3rem; color: #fff; margin-bottom: 4px; }
-.contact__card > p { font-size: .9rem; margin-bottom: 18px; }
+.contact__card { position: relative; padding: clamp(22px, 3vw, 40px); border-radius: 40px; background: linear-gradient(160deg, rgba(8, 78, 86, .55), rgba(0, 20, 25, .7));
+  border: 1px solid var(--line); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); box-shadow: 0 30px 80px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .08); }
+.contact__card h3 { font-size: clamp(1.2rem, 1.8vw, 1.5rem); color: #fff; margin-bottom: 4px; }
+.contact__card > p { font-size: .9rem; margin-bottom: 20px; }
 .results__more { margin-top: clamp(22px, 4vh, 40px); }
 @media (max-width: 859px) {
   .contact { grid-template-columns: 1fr; }

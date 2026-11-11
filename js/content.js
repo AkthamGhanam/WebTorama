@@ -111,6 +111,44 @@
       });
   };
 
+  /* Validación con mensajes propios, mostrados bajo cada campo. */
+  T.validar = function (form) {
+    var primero = null;
+    Array.prototype.forEach.call(form.elements, function (el) {
+      if (!el.willValidate) return;
+      var caja = el.closest('.field'); if (!caja) return;
+      var viejo = caja.querySelector('.field__err');
+      if (viejo) viejo.remove();
+      var v = el.validity, msg = '';
+      if (v.valueMissing) msg = 'Este campo es obligatorio.';
+      else if (v.typeMismatch && el.type === 'email') msg = 'Escribe un correo válido.';
+      else if (v.typeMismatch && el.type === 'url') msg = 'El enlace debe empezar por https://';
+      else if (!v.valid) msg = 'Revisa este campo.';
+      caja.classList.toggle('is-bad', !!msg);
+      if (msg) {
+        var err = document.createElement('small');
+        err.className = 'field__err'; err.textContent = msg;
+        caja.appendChild(err);
+        if (!primero) primero = el;
+        el.addEventListener('input', function limpiar() { caja.classList.remove('is-bad'); err.remove(); el.removeEventListener('input', limpiar); });
+      }
+    });
+    if (primero) primero.focus();
+    return !primero;
+  };
+
+  /* Botón para ver u ocultar una clave. */
+  T.ojos = function (root) {
+    Array.prototype.forEach.call((root || document).querySelectorAll('.field__eye'), function (b) {
+      b.addEventListener('click', function () {
+        var inp = b.parentNode.querySelector('input'), ver = inp.type === 'password';
+        inp.type = ver ? 'text' : 'password';
+        b.setAttribute('aria-pressed', ver ? 'true' : 'false');
+        b.setAttribute('aria-label', ver ? 'Ocultar' : 'Mostrar');
+      });
+    });
+  };
+
   /* Formularios que llegan por correo (servicio FormSubmit, sin servidor propio). */
   T.formulario = function (form) {
     var estado = form.querySelector('.form__status');
@@ -119,21 +157,27 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (!form.reportValidity()) return;
-      var datos = {}, cuerpo = [];
+      if (!T.validar(form)) return;
+      var datos = {}, cuerpo = [], orden = [];
       Array.prototype.forEach.call(form.elements, function (el) {
-        if (!el.name || el.type === 'submit') return;
+        if (!el.name || el.type === 'submit' || el.tagName === 'FIELDSET') return;
         if (el.name === '_honey') { datos._honey = el.value; return; }
         var etiqueta = el.getAttribute('data-label') || el.name;
-        datos[etiqueta] = el.value;
-        if (el.value) cuerpo.push(etiqueta + ': ' + el.value);
+        if (el.type === 'checkbox') {
+          if (orden.indexOf(etiqueta) < 0) { orden.push(etiqueta); datos[etiqueta] = ''; }
+          if (el.checked) datos[etiqueta] += (datos[etiqueta] ? ', ' : '') + el.value;
+          return;
+        }
+        orden.push(etiqueta); datos[etiqueta] = el.value;
       });
       if (datos._honey) return;                          // trampa para bots
+      orden.forEach(function (k) { if (datos[k]) cuerpo.push(k + ': ' + datos[k]); });
       datos._subject = form.getAttribute('data-subject') || 'Mensaje desde la web de Torama';
       datos._template = 'table';
       datos._captcha = 'false';
 
       var mailto = 'mailto:' + T.EMAIL + '?subject=' + encodeURIComponent(datos._subject) + '&body=' + encodeURIComponent(cuerpo.join('\n'));
+      var fallo = 'No pudimos enviarlo desde aquí. <a href="' + T.esc(mailto) + '">Envíalo por correo</a> o escríbenos por <a href="https://wa.me/13106906822" target="_blank" rel="noopener">WhatsApp</a>.';
       boton.disabled = true;
       decir('wait', 'Enviando…');
       fetch('https://formsubmit.co/ajax/' + T.EMAIL, {
@@ -144,13 +188,8 @@
           if (res.ok && String(res.j.success) === 'true') {
             form.reset();
             decir('ok', form.getAttribute('data-ok') || '¡Mensaje enviado! Te responderemos muy pronto.');
-          } else {
-            decir('error', 'No pudimos enviarlo desde aquí. <a href="' + T.esc(mailto) + '">Envíalo por correo</a> o escríbenos por <a href="https://wa.me/13106906822" target="_blank" rel="noopener">WhatsApp</a>.');
-          }
-        }).catch(function () {
-          boton.disabled = false;
-          decir('error', 'No pudimos enviarlo desde aquí. <a href="' + T.esc(mailto) + '">Envíalo por correo</a> o escríbenos por <a href="https://wa.me/13106906822" target="_blank" rel="noopener">WhatsApp</a>.');
-        });
+          } else { decir('error', fallo); }
+        }).catch(function () { boton.disabled = false; decir('error', fallo); });
     });
   };
 

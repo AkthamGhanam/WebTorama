@@ -17,27 +17,27 @@
 <body class="admin">
   <!-- Acceso -->
   <section class="login" id="login">
-    <form class="login__card form" id="login-form" autocomplete="off">
+    <form class="login__card form" id="login-form" autocomplete="off" novalidate>
       <svg class="login__mark" viewBox="-112 -112 224 224" aria-hidden="true"><g fill="none" stroke="#78ffc0" stroke-width="6"><circle cx="0" cy="5" r="94"/></g><g fill="#fff" data-torii="gate"></g></svg>
       <p class="kicker">Panel del equipo</p>
       <h1 class="title">Noticiero y <em>casos</em></h1>
-      <p class="login__lead">Publica noticias y casos de éxito en la web de Torama. Entra con tu llave de acceso de GitHub.</p>
-      <label>Llave de acceso (token)
-        <input type="password" id="token" placeholder="github_pat_…" required spellcheck="false" autocomplete="off">
-      </label>
-      <label class="check"><input type="checkbox" id="recordar" checked> Recordar en este dispositivo</label>
-      <button class="btn btn--red btn--lg" type="submit">Entrar al panel</button>
+      <p class="login__lead" id="login-lead">Publica noticias y casos de éxito en la web de Torama. Entra con tu nombre y la clave del equipo.</p>
+      <label class="field field--ico"><svg class="field__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><input type="text" id="nombre" name="nombre" placeholder="Así firmarás lo que publiques" required autocomplete="name"><span>Tu nombre</span></label>
+      <label class="field field--ico field--secret"><svg class="field__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><input type="password" id="clave" name="clave" placeholder="Pídesela al administrador" required spellcheck="false" autocomplete="off"><span id="clave-label">Clave del equipo</span>
+        <button type="button" class="field__eye" aria-label="Mostrar" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12c2.5-5 6-7.5 10-7.5S19.5 7 22 12c-2.5 5-6 7.5-10 7.5S4.5 17 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></label>
+      <label class="switch"><input type="checkbox" id="recordar" checked><i></i><span>Recordar en este dispositivo</span></label>
+      <button class="btn btn--red btn--lg btn--send" type="submit"><span>Entrar al panel</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
       <p class="form__status" id="login-status" role="status" aria-live="polite"></p>
-      <details class="login__help">
-        <summary>¿Cómo consigo mi llave?</summary>
+      <p class="login__alt"><button type="button" class="linklike" id="cambiar-modo">Entrar con una llave de GitHub</button></p>
+      <details class="login__help" id="ayuda-github" hidden>
+        <summary>¿Cómo consigo una llave de GitHub?</summary>
         <ol>
-          <li>Necesitas una cuenta de GitHub con permiso de escritura en el repositorio <b>WebTorama</b> (pídeselo al administrador).</li>
+          <li>Necesitas una cuenta de GitHub con permiso de escritura en el repositorio <b>WebTorama</b>.</li>
           <li>Abre <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → Settings → Developer settings → Fine-grained tokens → Generate new token</a>.</li>
           <li>En <b>Repository access</b> elige <b>Only select repositories</b> y marca <b>WebTorama</b>.</li>
-          <li>En <b>Permissions → Repository permissions</b> pon <b>Contents: Read and write</b>.</li>
-          <li>Pulsa <b>Generate token</b>, copia la llave y pégala aquí.</li>
+          <li>En <b>Repository permissions</b> pon <b>Contents: Read and write</b> y genera la llave.</li>
         </ol>
-        <p>La llave se guarda solo en este navegador y se usa únicamente para hablar con GitHub. No la compartas.</p>
+        <p>La llave se guarda solo en este navegador. No la compartas.</p>
       </details>
     </form>
   </section>

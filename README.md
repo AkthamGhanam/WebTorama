@@ -28,9 +28,30 @@ Las noticias y los casos son datos, no HTML:
 - `content/noticias.json` y `content/casos.json` — las entradas (título, texto en Markdown, portada, "Creado por", fecha, publicado o borrador…).
 - `content/media/` — las imágenes.
 
-Se editan desde `admin.html`. El panel habla directamente con GitHub: cada guardado es un commit en `main` y, si existe la rama `gh-pages`, la pone al día para que GitHub Pages lo publique. Para entrar hace falta una llave (fine-grained token) con permiso **Contents: Read and write** sobre este repositorio; los pasos están en la propia pantalla de acceso.
+Se editan desde `admin.html`. Cada guardado es un commit en `main` (texto e imágenes juntos) y el sitio se vuelve a publicar solo.
+
+Hay dos formas de entrar al panel:
+
+- **Clave del equipo** (recomendada, en Vercel). Todo el equipo usa la misma clave; cada persona pone además su nombre, que es el que sale en "Creado por". La clave la comprueba la función `api/panel.js`, que es quien publica en GitHub con un token guardado en el servidor.
+- **Llave de GitHub** (alternativa). Con un token personal, directamente contra GitHub. Sirve donde no hay servidor, por ejemplo en GitHub Pages.
 
 Los borradores no se muestran en la web, pero al ser un repositorio público sí son visibles en GitHub.
+
+## Publicar en Vercel
+
+1. En Vercel: **Add New → Project**, importa el repositorio `WebTorama`. Framework preset: **Other**. Sin comando de build ni carpeta de salida.
+2. En GitHub crea un token para el servidor: **Settings → Developer settings → Fine-grained tokens → Generate new token**, con acceso solo a `WebTorama` y permiso **Contents: Read and write**.
+3. En Vercel, **Settings → Environment Variables**, añade:
+
+   | Variable | Valor |
+   |---|---|
+   | `TEAM_KEY` | La clave que usará el equipo para entrar al panel. Larga y difícil de adivinar. |
+   | `GITHUB_TOKEN` | El token del paso 2. |
+   | `PUBLISH_BRANCH` | Opcional. Déjala vacía si ya no se usa GitHub Pages; por defecto pone al día `gh-pages`. |
+
+4. Vuelve a desplegar (**Deployments → Redeploy**) para que tome las variables.
+
+Para cambiar la clave del equipo basta con cambiar `TEAM_KEY` y volver a desplegar. Cada publicación desde el panel crea un commit y Vercel despliega solo; tarda alrededor de un minuto.
 
 ## Formularios
 
@@ -45,6 +66,7 @@ Los formularios (contacto y "Envía tu noticia") llegan a `Contenido.toramaagenc
 - `js/content.js` — carga de contenido, Markdown seguro y envío de formularios.
 - `js/site.js` — cabecera, menú y pie de las páginas interiores.
 - `js/casos.js`, `js/noticias.js`, `js/admin.js` — lógica de cada página.
+- `api/panel.js` — función de servidor (Vercel) que valida la clave del equipo y publica en el repositorio.
 - `assets/` — fotos, logos y tipografías.
 
 ## Marca

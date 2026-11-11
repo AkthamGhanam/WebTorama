@@ -10,8 +10,6 @@ body.admin { min-height: 100vh; background: radial-gradient(rgba(120, 255, 192, 
 .login__mark { width: 84px; height: 84px; margin-bottom: 10px; overflow: visible; }
 .login__card .kicker { font-size: 1.2rem; }
 .login__lead { font-size: .95rem; margin-bottom: 6px; }
-.check { display: flex !important; align-items: center; gap: 10px; color: var(--ink) !important; letter-spacing: 0 !important; font-size: .9rem !important; cursor: pointer; }
-.check input { width: 20px !important; height: 20px; padding: 0 !important; accent-color: #78ffc0; flex: none; }
 .login__help { margin-top: 8px; font-size: .88rem; border-top: 1px solid var(--line); padding-top: 14px; }
 .login__help summary { cursor: pointer; color: var(--cyan); font-weight: 500; }
 .login__help ol { list-style: decimal; padding-left: 1.3em; display: grid; gap: 8px; margin: 12px 0; }
@@ -75,13 +73,15 @@ body.admin { min-height: 100vh; background: radial-gradient(rgba(120, 255, 192, 
 .metric .x { position: static; }
 .hint { font-size: .82rem; opacity: .7; }
 .mini { justify-self: start; }
-.mdbox { border-radius: 20px; border: 1px solid var(--line); overflow: hidden; background: rgba(0, 15, 19, .55); }
+.mdbox { border-radius: 22px; border: 1px solid rgba(255, 255, 255, .12); overflow: hidden; background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02)); transition: border-color .3s, box-shadow .35s; }
 .mdbar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: 8px 10px; border-bottom: 1px solid var(--line); background: rgba(8, 78, 86, .35); }
 .mdbar__label { font-size: .82rem; letter-spacing: .06em; color: var(--cyan); margin-right: 8px; }
 .mdbar button { font: inherit; font-size: .8rem; color: var(--ink); cursor: pointer; padding: 5px 11px; border-radius: 10px; border: 1px solid transparent; background: rgba(255, 255, 255, .06); }
 .mdbar button:hover { border-color: var(--cyan); color: #fff; }
 .mdbar__prev { margin-left: auto; color: var(--cyan) !important; }
-.mdbox textarea { border: 0 !important; border-radius: 0 !important; background: none !important; box-shadow: none !important; min-height: 320px; }
+.mdbox textarea { display: block; width: 100%; min-height: 340px; padding: 18px 20px; border: 0; outline: 0; resize: vertical; background: none; color: #fff; font: inherit; font-size: 1rem; line-height: 1.65; }
+.mdbox textarea::placeholder { color: rgba(223, 229, 234, .4); }
+.mdbox:focus-within { border-color: rgba(120, 255, 192, .6); box-shadow: 0 14px 34px rgba(0, 0, 0, .3), 0 0 0 4px rgba(120, 255, 192, .1); }
 .mdprev { border: 0; border-radius: 0; min-height: 320px; background: none; }
 .editor__state { font-size: .85rem; }
 .editor__state b { color: var(--cyan); }
@@ -106,7 +106,25 @@ body.admin { min-height: 100vh; background: radial-gradient(rgba(120, 255, 192, 
   .abar__user span { display: none; }
 }
 
-.form .mini, .form .row__acts button { font-size: .82rem; font-weight: 400; }
-.form .mdbar button { font-size: .8rem; font-weight: 400; }
-.form .x { font-size: 1.1rem; }
-.form .back { font-weight: 400; }
+
+/* Campos del panel */
+.login__card { gap: 18px; }
+.login__card .title { margin-bottom: 0; }
+.login__alt { text-align: center; margin-top: -4px; }
+.linklike { font: inherit; font-size: .88rem; color: var(--cyan); background: none; border: 0; padding: 4px; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.login__card .btn--send { justify-self: stretch; justify-content: space-between; padding-left: 30px; }
+.field--title > input { font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 700; padding-top: 30px; padding-bottom: 14px; }
+.field--title > span { top: 22px; font-size: 1.15rem; }
+.field--short > textarea { min-height: 96px; }
+.box { background: rgba(255, 255, 255, .03); border-color: rgba(255, 255, 255, .12); }
+.metric input { width: 100%; min-width: 0; font: inherit; font-size: .95rem; color: #fff; padding: 11px 14px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, .12); background: rgba(255, 255, 255, .05); outline: 0; transition: border-color .3s, box-shadow .3s; }
+.metric input:focus { border-color: rgba(120, 255, 192, .6); box-shadow: 0 0 0 3px rgba(120, 255, 192, .12); }
+.metric input::placeholder { color: rgba(223, 229, 234, .4); }
+.metric input[data-m="valor"] { font-weight: 700; color: var(--cyan); }
+.mini, .row__acts button { font-family: inherit; font-size: .82rem; font-weight: 400; }
+.mdbar button { font-family: inherit; font-size: .8rem; font-weight: 400; }
+.editor__acts .btn { border: 0; font: inherit; font-weight: 500; cursor: pointer; }
+.editor__acts .btn--glass { border: 1px solid rgba(120, 255, 192, .4); }
+.editor__acts .btn[disabled] { opacity: .6; cursor: progress; }
+.editor__top .back { font: inherit; font-size: .92rem; color: var(--cyan); }
+.editor__side .switch { margin: 2px 4px; }
