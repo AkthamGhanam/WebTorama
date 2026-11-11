@@ -5,7 +5,9 @@
 
   var T = (window.Torama = window.Torama || {});
 
-  T.EMAIL = 'Contenido.toramaagency@gmail.com';
+  // TEMPORAL: correo de prueba para activar el formulario desde Vercel.
+  // Volver a 'Contenido.toramaagency@gmail.com' al terminar la prueba.
+  T.EMAIL = 'ghanamaktham@gmail.com';
   T.CATEGORIAS = {
     'meta-ads': 'Meta Ads',
     'audiovisual': 'Producción audiovisual',
