@@ -59,7 +59,7 @@
     '<div class="foot__col"><h3>Contacto</h3><a href="https://wa.me/13106906822" target="_blank" rel="noopener">+1 (310) 690-6822</a><a href="mailto:Toramaagency@gmail.com">Toramaagency@gmail.com</a><p>Lunes a viernes · 9:00 am a 5:00 pm</p><p>Valencia, Venezuela<br>San Diego, Urb. La Esmeralda</p><p class="foot__remote">Llegamos a donde tú nos llames</p></div>' +
     '</div></div>' +
     '<p class="foot__word" aria-hidden="true"><span>T</span><span>O</span><span>R</span><span>A</span><span>M</span><span>A</span></p>' +
-    '<div class="wrap foot__bar"><p>© <span id="year"></span> Torama Agency · Valencia, Venezuela · <a href="admin.html">Panel del equipo</a></p>' +
+    '<div class="wrap foot__bar"><p>© <span id="year"></span> Torama Agency · Valencia, Venezuela · <a href="privacidad.html">Política de privacidad</a> · <a href="admin.html">Panel del equipo</a></p>' +
     '<a class="totop" href="#top">Volver arriba' + gate + '</a></div></div></footer>';
 
   function mount(sel, html, where) {
@@ -117,7 +117,7 @@
   // ---- Revelados (también para contenido que se añade después) -------------
   var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (entries) {
     entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
-  }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' }) : null;
+  }, { threshold: 0.02, rootMargin: '0px 0px -5% 0px' }) : null;
   T.revelar = function (root) {
     Array.prototype.forEach.call((root || document).querySelectorAll('.reveal:not(.is-in)'), function (el, i) {
       el.style.setProperty('--rd', Math.min(i % 6, 5) * 70 + 'ms');

@@ -185,25 +185,25 @@
 
   // ---- Marquesina de clientes -------------------------------------------
   var CLIENTS = [
-    ['cliente-01', 'Marca aliada de Torama'], ['break-empresarial', 'Break Empresarial'],
-    ['acero-cristal', 'Acero Cristal'], ['jd', 'Diseños JD'], ['icor', 'ICOR'],
-    ['cliente-06', 'Marca aliada de Torama'], ['trigus-bakery', "Trigu's Bakery"],
-    ['lux-spa', 'Lux Spa'], ['psicomooc', 'Psicomooc'], ['contygo', 'Viajes Contygo'],
-    ['hotel-manantial', 'Hotel Manantial Valencia']
+    ['acero-cristal', 'Acero Cristal', 'dark'], ['adriana-torres', 'Adriana Torres Productions'],
+    ['psicomooc', 'Psicomooc'], ['contygo', 'Viajes Contygo', 'dark'], ['voces-que-conectan', 'Voces que Conectan'],
+    ['hotel-manantial', 'Hotel Manantial Valencia'], ['delmar-restaurant', 'Delmar Restaurant'], ['lux-spa', 'Lux Spa'],
+    ['trigus-bakery', "Trigu's Bakery"], ['icor', 'ICOR'], ['break-empresarial', 'Break Empresarial'],
+    ['jd', 'Diseños JD'], ['cliente-01', 'Marca aliada de Torama'], ['cliente-06', 'Marca aliada de Torama']
   ];
   function fillRow(id, list) {
     var row = document.getElementById(id);
     if (!row) return;
     var html = '';
-    for (var rep = 0; rep < 2; rep++) {
+    for (var rep = 0; rep < 4; rep++) {             // 4 copias: el bucle no deja huecos ni en pantallas muy anchas
       list.forEach(function (c) {
-        html += '<span class="logo"' + (rep ? ' aria-hidden="true"' : '') + '><img src="assets/clientes/' + c[0] + '.webp" alt="' + (rep ? '' : c[1]) + '" loading="lazy"></span>';
+        html += '<span class="logo' + (c[2] ? ' logo--dark' : '') + '"' + (rep ? ' aria-hidden="true"' : '') + '><img src="assets/clientes/' + c[0] + '.webp" alt="' + (rep ? '' : c[1]) + '" loading="lazy"></span>';
       });
     }
     row.innerHTML = html;
   }
-  fillRow('logos-a', CLIENTS);
-  fillRow('logos-b', CLIENTS.slice().reverse());
+  fillRow('logos-a', CLIENTS.slice(0, 7));
+  fillRow('logos-b', CLIENTS.slice(7));
 
   // ---- Menú a pantalla completa -----------------------------------------
   var burger = $('#burger'), menu = $('#menu');

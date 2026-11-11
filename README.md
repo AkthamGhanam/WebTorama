@@ -20,6 +20,7 @@ y abrir `http://localhost:8000`.
 - `casos.html` — todos los trabajos y casos de éxito, con filtros por servicio y página de detalle (`casos.html?c=…`).
 - `noticias.html` — el Noticiero: listado, búsqueda, lectura (`noticias.html?n=…`) y formulario público "Envía tu noticia".
 - `admin.html` — panel del equipo para publicar noticias y casos.
+- `privacidad.html` — política de privacidad (incluye las instrucciones de eliminación de datos en `privacidad.html#eliminacion`).
 
 ## Contenido
 
@@ -79,5 +80,5 @@ Colores, tipografía e imagotipo salen del manual corporativo:
 
 ## Pendiente
 
-- Sustituir los logos de clientes (`assets/clientes/`) y las fotos por los archivos originales: los actuales son recortes de la exportación de Canva.
+- Los logos de `assets/clientes/` que no son originales (Psicomooc, Hotel Manantial, Lux Spa, Trigu's, ICOR, Break Empresarial, Diseños JD y dos sin identificar) son recortes de Canva con el fondo eliminado; conviene sustituirlos por los archivos originales. Las fotos también son recortes.
 - Páginas internas pendientes: Quiénes somos, Servicios y Contacto.
