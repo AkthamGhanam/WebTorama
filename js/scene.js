@@ -29,6 +29,9 @@
     render: null
   });
 
+  // En las páginas interiores la escena arranca ya "dentro", sin túnel
+  if (cv.getAttribute('data-mode') === 'inside') { S.p = S.target = 1; }
+
   // ---- Mundo -------------------------------------------------------------
   var GAP = 1.1;
   var GATES = [];

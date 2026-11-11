@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel del equipo · Torama Agency</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#00242b">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin">
+  <!-- Acceso -->
+  <section class="login" id="login">
+    <form class="login__card form" id="login-form" autocomplete="off">
+      <svg class="login__mark" viewBox="-112 -112 224 224" aria-hidden="true"><g fill="none" stroke="#78ffc0" stroke-width="6"><circle cx="0" cy="5" r="94"/></g><g fill="#fff" data-torii="gate"></g></svg>
+      <p class="kicker">Panel del equipo</p>
+      <h1 class="title">Noticiero y <em>casos</em></h1>
+      <p class="login__lead">Publica noticias y casos de éxito en la web de Torama. Entra con tu llave de acceso de GitHub.</p>
+      <label>Llave de acceso (token)
+        <input type="password" id="token" placeholder="github_pat_…" required spellcheck="false" autocomplete="off">
+      </label>
+      <label class="check"><input type="checkbox" id="recordar" checked> Recordar en este dispositivo</label>
+      <button class="btn btn--red btn--lg" type="submit">Entrar al panel</button>
+      <p class="form__status" id="login-status" role="status" aria-live="polite"></p>
+      <details class="login__help">
+        <summary>¿Cómo consigo mi llave?</summary>
+        <ol>
+          <li>Necesitas una cuenta de GitHub con permiso de escritura en el repositorio <b>WebTorama</b> (pídeselo al administrador).</li>
+          <li>Abre <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → Settings → Developer settings → Fine-grained tokens → Generate new token</a>.</li>
+          <li>En <b>Repository access</b> elige <b>Only select repositories</b> y marca <b>WebTorama</b>.</li>
+          <li>En <b>Permissions → Repository permissions</b> pon <b>Contents: Read and write</b>.</li>
+          <li>Pulsa <b>Generate token</b>, copia la llave y pégala aquí.</li>
+        </ol>
+        <p>La llave se guarda solo en este navegador y se usa únicamente para hablar con GitHub. No la compartas.</p>
+      </details>
+    </form>
+  </section>
+
+  <!-- Panel -->
+  <div class="app" id="app" hidden>
+    <header class="abar">
+      <a class="brand" href="index.html" aria-label="Ver el sitio">
+        <svg class="brand__mark" viewBox="-112 -112 224 224" aria-hidden="true"><g fill="none" stroke="#78ffc0" stroke-width="6"><circle cx="0" cy="5" r="94"/></g><g fill="#fff" data-torii="gate"></g></svg>
+        <span class="brand__name">Torama <b>Panel</b></span>
+      </a>
+      <nav class="tabs" id="tabs" aria-label="Secciones">
+        <button data-tipo="noticias" class="is-on">Noticiero</button>
+        <button data-tipo="casos">Casos de éxito</button>
+      </nav>
+      <div class="abar__user">
+        <span id="usuario"></span>
+        <a class="abar__link" href="index.html" target="_blank" rel="noopener">Ver sitio</a>
+        <button class="abar__link" id="salir" type="button">Salir</button>
+      </div>
+    </header>
+
+    <main class="awrap">
+      <section id="vista-lista">
+        <div class="ahead">
+          <div>
+            <h1 class="title" id="lista-titulo">Noticiero</h1>
+            <p id="lista-sub"></p>
+          </div>
+          <div class="ahead__tools">
+            <label class="search"><span class="sr-only">Buscar</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
+              <input type="search" id="abuscar" placeholder="Buscar…">
+            </label>
+            <button class="btn btn--red" id="nuevo" type="button">+ Nueva noticia</button>
+          </div>
+        </div>
+        <ul class="rows" id="rows"></ul>
+      </section>
+
+      <section id="vista-editor" hidden></section>
+    </main>
+  </div>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <script src="js/torii.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

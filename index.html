@@ -42,6 +42,7 @@
       <a href="#resultados" data-sec="resultados">Casos de éxito</a>
       <a href="#servicios" data-sec="servicios">Servicios</a>
       <a href="#clientes" data-sec="clientes">Clientes</a>
+      <a href="noticias.html">Noticiero</a>
     </nav>
     <a class="top__cta" href="#contacto"><span>Hablemos</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
     <a class="top__skip" href="#nosotros">Saltar intro <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v13M6 13l6 6 6-6"/></svg></a>
@@ -56,8 +57,9 @@
       <a href="#nosotros"><i>01</i>Quiénes somos</a>
       <a href="#resultados"><i>02</i>Casos de éxito</a>
       <a href="#servicios"><i>03</i>Servicios</a>
-      <a href="#clientes"><i>04</i>Clientes</a>
-      <a href="#contacto"><i>05</i>Contacto</a>
+      <a href="casos.html"><i>04</i>Todos los casos</a>
+      <a href="noticias.html"><i>05</i>Noticiero</a>
+      <a href="#contacto"><i>06</i>Contacto</a>
     </nav>
     <p class="menu__foot"><a href="https://wa.me/13106906822" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.instagram.com/toramaagency" target="_blank" rel="noopener">Instagram</a><a href="mailto:Toramaagency@gmail.com">Correo</a></p>
   </div>
@@ -214,6 +216,7 @@
             </ol>
           </article>
         </div>
+        <p class="results__more reveal"><a class="btn btn--glass btn--lg magnet" href="casos.html">Ver todos los casos de éxito →</a></p>
       </div>
     </section>
 
@@ -292,14 +295,46 @@
 
     <!-- ============ CIERRE ============ -->
     <section class="sec closing" id="contacto" data-sec>
-      <div class="wrap center">
-        <p class="kicker reveal">Hagamos que</p>
-        <h2 class="title title--xl reveal">El sello <em>Torama</em> viva en <span class="tu">tu</span> proyecto</h2>
-        <div class="btns btns--center reveal">
-          <a class="btn btn--red btn--lg magnet" href="https://wa.me/13106906822" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
-          <a class="btn btn--glass btn--lg magnet" href="mailto:Toramaagency@gmail.com">Toramaagency@gmail.com</a>
+      <div class="wrap contact">
+        <div class="contact__text">
+          <p class="kicker reveal">Hagamos que</p>
+          <h2 class="title title--xl reveal">El sello <em>Torama</em> viva en <span class="tu">tu</span> proyecto</h2>
+          <div class="btns reveal">
+            <a class="btn btn--red btn--lg magnet" href="https://wa.me/13106906822" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+          </div>
+          <p class="closing__note reveal">Presupuestos 100% personalizados · Contratos desde 3 meses · Reportes mensuales de desempeño</p>
         </div>
-        <p class="closing__note reveal">Presupuestos 100% personalizados · Contratos desde 3 meses · Reportes mensuales de desempeño</p>
+        <div class="contact__card reveal">
+          <h3>Recibe tu presupuesto personalizado</h3>
+          <p>Cuéntanos de tu proyecto y te respondemos por correo o WhatsApp.</p>
+          <form class="form" data-torama-form data-subject="Nuevo contacto desde la web de Torama" data-ok="¡Mensaje enviado! Te responderemos muy pronto." novalidate>
+            <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="form__row">
+              <label>Nombre<input type="text" name="nombre" data-label="Nombre" placeholder="Tu nombre" required autocomplete="name"></label>
+              <label>Correo<input type="email" name="email" data-label="email" placeholder="tucorreo@ejemplo.com" required autocomplete="email"></label>
+            </div>
+            <div class="form__row">
+              <label><span>WhatsApp <small>(opcional)</small></span><input type="tel" name="telefono" data-label="WhatsApp" placeholder="+58…" autocomplete="tel"></label>
+              <label>Me interesa
+                <select name="servicio" data-label="Servicio de interés">
+                  <option value="">Elige un servicio</option>
+                  <option>Campañas en Meta Ads</option>
+                  <option>Producción audiovisual</option>
+                  <option>Creación de contenido</option>
+                  <option>Contenido con IA</option>
+                  <option>Fotografía</option>
+                  <option>Diseño gráfico</option>
+                  <option>Auditoría de estrategia</option>
+                  <option>Formaciones In-Company</option>
+                  <option>Otro</option>
+                </select>
+              </label>
+            </div>
+            <label>Cuéntanos de tu proyecto<textarea name="mensaje" data-label="Mensaje" rows="4" placeholder="¿Qué quieres lograr?" required></textarea></label>
+            <button class="btn btn--red btn--lg" type="submit">Enviar mensaje</button>
+            <p class="form__status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </div>
     </section>
   </main>
@@ -340,7 +375,8 @@
             <a href="#nosotros">Quiénes somos</a>
             <a href="#resultados">Casos de éxito</a>
             <a href="#servicios">Servicios</a>
-            <a href="#clientes">Clientes</a>
+            <a href="casos.html">Todos los casos</a>
+            <a href="noticias.html">Noticiero</a>
           </nav>
           <div class="foot__col reveal">
             <h3>Servicios</h3>
@@ -365,7 +401,7 @@
       <p class="foot__word" aria-hidden="true"><span>T</span><span>O</span><span>R</span><span>A</span><span>M</span><span>A</span></p>
 
       <div class="wrap foot__bar">
-        <p>© <span id="year">2026</span> Torama Agency · Valencia, Venezuela</p>
+        <p>© <span id="year">2026</span> Torama Agency · Valencia, Venezuela · <a href="admin.html">Panel del equipo</a></p>
         <a class="totop" href="#inicio">Volver a cruzar la puerta
           <svg viewBox="-112 -90 224 180" aria-hidden="true"><use href="#torama-gate"/></svg>
         </a>
@@ -375,6 +411,7 @@
 
   <script src="js/torii.js"></script>
   <script src="js/scene.js"></script>
+  <script src="js/content.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

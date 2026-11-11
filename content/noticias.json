@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "id": "bienvenidos-al-noticiero-torama",
+      "slug": "bienvenidos-al-noticiero-torama",
+      "titulo": "Bienvenidos al Noticiero Torama",
+      "extracto": "Abrimos este espacio para contar lo que pasa dentro de Torama: proyectos, aprendizajes y novedades del equipo.",
+      "cuerpo": "Este es el **Noticiero Torama**, el espacio donde el equipo comparte lo que va pasando dentro de la agencia.\n\n## Qué vas a encontrar aquí\n\n- Novedades de nuestros proyectos y campañas.\n- Aprendizajes sobre Meta Ads, contenido, producción audiovisual y diseño.\n- Noticias del equipo y de las marcas con las que trabajamos.\n\n## ¿Tienes una noticia?\n\nSi quieres que publiquemos la tuya, envíala desde el formulario que está al final de la página del Noticiero. La revisamos y sale publicada con tu nombre.\n\n> Estamos para crecer juntos.",
+      "portada": "assets/img/equipo.webp",
+      "categoria": "Equipo",
+      "autor": "Torama Agency",
+      "cargo": "Equipo editorial",
+      "fecha": "2026-11-11",
+      "destacado": true,
+      "publicado": true
+    },
+    {
+      "id": "como-trabajamos-propuestas-personalizadas",
+      "slug": "como-trabajamos-propuestas-personalizadas",
+      "titulo": "Cómo trabajamos: propuestas 100% personalizadas",
+      "extracto": "Cada plan se adapta al proyecto, a los resultados esperados y al presupuesto del cliente. Así lo hacemos.",
+      "cuerpo": "En Torama Agency trabajamos con principios claros.\n\n## Propuestas 100% personalizadas\n\nCada plan se adapta al proyecto, a los resultados esperados y al presupuesto del cliente.\n\n## Transparencia en resultados\n\nTe entregamos reportes mensuales de desempeño.\n\n## Compromiso de mediano plazo\n\nContratos desde 3 meses, pensados para ver resultados reales.\n\n## Trabajo en equipo\n\nUn grupo de profesionales especializados por área (estrategia, contenido, diseño, producción, legal) trabajando de forma coordinada.",
+      "portada": "assets/img/servicio-meta-ads.webp",
+      "categoria": "Agencia",
+      "autor": "Torama Agency",
+      "cargo": "Equipo editorial",
+      "fecha": "2026-11-10",
+      "destacado": false,
+      "publicado": true
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Noticiero · Torama Agency</title>
+  <meta name="description" content="El Noticiero Torama: novedades, aprendizajes y noticias del equipo de Torama Agency y de las marcas con las que trabajamos.">
+  <meta name="theme-color" content="#00242b">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="inner" data-page="noticias">
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <canvas id="scene" data-mode="inside" aria-hidden="true"></canvas>
+  <div class="veil" aria-hidden="true"></div>
+  <div class="glow" id="glow" aria-hidden="true"></div>
+  <div data-chrome="header"></div>
+
+  <main id="contenido">
+    <!-- Listado -->
+    <section class="phead" id="lista-cabecera">
+      <div class="wrap">
+        <p class="kicker reveal">Lo que pasa dentro de Torama</p>
+        <h1 class="title title--xl reveal">Noti<em>ciero</em></h1>
+        <p class="lead reveal">Novedades, aprendizajes y noticias contadas por el equipo y por quienes crecen con nosotros.</p>
+        <div class="tools reveal">
+          <label class="search"><span class="sr-only">Buscar noticias</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
+            <input type="search" id="buscar" placeholder="Buscar noticias…" autocomplete="off">
+          </label>
+          <div class="chips" id="filtros" role="group" aria-label="Filtrar por categoría"></div>
+        </div>
+      </div>
+    </section>
+    <section class="wrap" id="lista" aria-live="polite">
+      <div id="destacada"></div>
+      <div class="grid grid--noticias" id="grid"></div>
+      <p class="empty" id="vacio" hidden>No encontramos noticias con esa búsqueda.</p>
+    </section>
+
+    <!-- Detalle de una noticia -->
+    <article class="detail detail--post wrap" id="detalle" hidden></article>
+
+    <!-- Envío público -->
+    <section class="wrap submit" id="enviar">
+      <div class="submit__box reveal">
+        <div class="submit__text">
+          <p class="kicker">¿Tienes algo que contar?</p>
+          <h2 class="title">Envía tu <em>noticia</em></h2>
+          <p class="lead">Cuéntanos tu noticia y el equipo la revisa. Si se publica, sale en el Noticiero con tu nombre: <strong>Creado por ti</strong>.</p>
+          <ol class="steps">
+            <li><b>1</b> Escribe tu noticia y envíala.</li>
+            <li><b>2</b> La revisamos y te escribimos si hace falta algo.</li>
+            <li><b>3</b> Se publica con tu firma.</li>
+          </ol>
+          <p class="submit__team">¿Eres del equipo? <a href="admin.html">Publica desde el panel</a>.</p>
+        </div>
+        <form class="form" data-torama-form data-subject="Nueva noticia para el Noticiero Torama" data-ok="¡Gracias! Recibimos tu noticia. El equipo la revisará y te avisará cuando se publique." novalidate>
+          <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="form__row">
+            <label>Creado por<input type="text" name="autor" data-label="Creado por" placeholder="Tu nombre" required autocomplete="name"></label>
+            <label>Correo<input type="email" name="email" data-label="email" placeholder="tucorreo@ejemplo.com" required autocomplete="email"></label>
+          </div>
+          <label>Título de la noticia<input type="text" name="titulo" data-label="Título" placeholder="Un título claro y corto" required maxlength="140"></label>
+          <label>Tu noticia<textarea name="noticia" data-label="Noticia" rows="7" placeholder="Cuéntanos qué pasó, dónde y cuándo…" required></textarea></label>
+          <label><span>Enlace a fotos o video <small>(opcional: Drive, Instagram, YouTube…)</small></span><input type="url" name="enlace" data-label="Enlace a fotos o video" placeholder="https://"></label>
+          <button class="btn btn--red btn--lg" type="submit">Enviar mi noticia</button>
+          <p class="form__status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div data-chrome="footer"></div>
+
+  <script src="js/torii.js"></script>
+  <script src="js/scene.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/noticias.js"></script>
+</body>
+</html>

@@ -13,10 +13,13 @@
 
   window.TORII = { gate: GATE, ring: RING, word: WORD };
 
-  // Inyecta las formas en los SVG del documento
+  // Inyecta las formas en los SVG del documento (o de un fragmento recién añadido)
   var map = { gate: GATE, ring: RING, word: WORD };
-  document.querySelectorAll('[data-torii]').forEach(function (g) {
-    var d = map[g.getAttribute('data-torii')];
-    if (d) g.innerHTML = '<path fill-rule="evenodd" d="' + d + '"/>';
-  });
+  window.TORII.paint = function (root) {
+    (root || document).querySelectorAll('[data-torii]').forEach(function (g) {
+      var d = map[g.getAttribute('data-torii')];
+      if (d && !g.firstChild) g.innerHTML = '<path fill-rule="evenodd" d="' + d + '"/>';
+    });
+  };
+  window.TORII.paint();
 })();

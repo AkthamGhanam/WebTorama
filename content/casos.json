@@ -1,0 +1,383 @@
+{
+  "items": [
+    {
+      "id": "aponwao-ve",
+      "slug": "aponwao-ve",
+      "titulo": "Más de 700% de retorno en un mes",
+      "cliente": "Aponwao VE",
+      "categoria": "meta-ads",
+      "resumen": "Tienda de ropa para caballeros: $112,06 invertidos, 678 mensajes y 217 ventas.",
+      "cuerpo": "Aponwao VE es una tienda de ropa para caballeros. Con **$112,06 invertidos en un mes** en campañas de Meta Ads se recibieron **678 mensajes**, de los cuales se concretaron **217 ventas**.\n\nSignificó un retorno superior al **700%** sobre la inversión realizada.",
+      "portada": "content/media/casos/aponwao-1.webp",
+      "galeria": [],
+      "video": "",
+      "metricas": [
+        {
+          "valor": "$112,06",
+          "etiqueta": "invertidos en un mes"
+        },
+        {
+          "valor": "678",
+          "etiqueta": "mensajes"
+        },
+        {
+          "valor": "217",
+          "etiqueta": "ventas"
+        },
+        {
+          "valor": "+700%",
+          "etiqueta": "de retorno"
+        }
+      ],
+      "autor": "Torama Agency",
+      "fecha": "2026-11-10",
+      "destacado": true,
+      "publicado": true
+    },
+    {
+      "id": "icor",
+      "slug": "icor",
+      "titulo": "347 mensajes y 120 ventas con $67",
+      "cliente": "ICOR · Instituto de Comunicación y Oratoria",
+      "categoria": "meta-ads",
+      "resumen": "$67 invertidos y 347 mensajes, de los cuales se cerraron 120 en ventas.",
+      "cuerpo": "Para el Instituto de Comunicación y Oratoria (ICOR) se invirtieron **$67** en campañas de Meta Ads. Se recibieron **347 mensajes**, de los cuales se cerraron **120 en ventas**.",
+      "portada": "content/media/casos/icor-1.webp",
+      "galeria": [],
+      "video": "",
+      "metricas": [
+        {
+          "valor": "$67",
+          "etiqueta": "invertidos"
+        },
+        {
+          "valor": "347",
+          "etiqueta": "mensajes"
+        },
+        {
+          "valor": "120",
+          "etiqueta": "ventas cerradas"
+        }
+      ],
+      "autor": "Torama Agency",
+      "fecha": "2026-11-09",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "global-industries",
+      "slug": "global-industries",
+      "titulo": "117 mensajes con solo $25",
+      "cliente": "Global Industries · Mayorista de repuestos para celulares",
+      "categoria": "meta-ads",
+      "resumen": "Con solo $25 obtuvo 117 mensajes, de los cuales logró un cierre de 15.",
+      "cuerpo": "Global Industries es un mayorista de repuestos para celulares. Con solo **$25** de inversión en Meta Ads obtuvo **117 mensajes**, de los cuales logró un cierre de **15** de ellos.",
+      "portada": "content/media/casos/global-industries-1.webp",
+      "galeria": [],
+      "video": "",
+      "metricas": [
+        {
+          "valor": "$25",
+          "etiqueta": "invertidos"
+        },
+        {
+          "valor": "117",
+          "etiqueta": "mensajes"
+        },
+        {
+          "valor": "15",
+          "etiqueta": "cierres"
+        }
+      ],
+      "autor": "Torama Agency",
+      "fecha": "2026-11-08",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "miss-diamante-venezuela",
+      "slug": "miss-diamante-venezuela",
+      "titulo": "Spot en tiempo récord",
+      "cliente": "Miss Diamante Venezuela",
+      "categoria": "audiovisual",
+      "resumen": "Un spot producido en menos de 24 horas gracias a la coordinación entre grabación y edición.",
+      "cuerpo": "Spot realizado para la organización Miss Diamante Venezuela, producido en **menos de 24 horas** gracias a la coordinación entre los equipos de grabación y edición.\n\nMientras los camarógrafos grababan en Tucacas, el equipo de editores montaba el material en tiempo real. Ambos equipos trabajaron al mismo tiempo y el spot salió en menos de un día.",
+      "portada": "content/media/casos/miss-diamante-1.webp",
+      "galeria": [],
+      "video": "",
+      "metricas": [
+        {
+          "valor": "< 24 h",
+          "etiqueta": "de producción"
+        }
+      ],
+      "autor": "Torama Agency",
+      "fecha": "2026-11-07",
+      "destacado": true,
+      "publicado": true
+    },
+    {
+      "id": "preview-agency",
+      "slug": "preview-agency",
+      "titulo": "Reinauguración en la torre exterior",
+      "cliente": "Preview Agency",
+      "categoria": "audiovisual",
+      "resumen": "Cobertura audiovisual profesional de la reinauguración de Preview Agency.",
+      "cuerpo": "Cobertura audiovisual profesional de la reinauguración de Preview Agency en su torre exterior.\n\nEl video se grabó con cámara profesional y equipos de alta gama, con entrevistas en vivo durante el evento, y recoge el ambiente y los momentos clave de la jornada. El resultado es un spot de aspecto corporativo y cinematográfico que muestra la nueva etapa de la marca.",
+      "portada": "content/media/casos/preview-agency-1.webp",
+      "galeria": [],
+      "video": "",
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-11-06",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "psicomooc",
+      "slug": "psicomooc",
+      "titulo": "Contenido para formaciones en toda Venezuela",
+      "cliente": "Psicomooc",
+      "categoria": "contenido",
+      "resumen": "Contenido para promocionar formaciones online y presenciales en distintas ciudades de Venezuela.",
+      "cuerpo": "El objetivo es promocionar formaciones online y presenciales en distintas ciudades de Venezuela.",
+      "portada": "content/media/casos/psicomooc-1.webp",
+      "galeria": [
+        "content/media/casos/psicomooc-2.webp",
+        "content/media/casos/psicomooc-3.webp"
+      ],
+      "video": "",
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-11-05",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "omega-travel",
+      "slug": "omega-travel",
+      "titulo": "Contenido que conecta con viajeros",
+      "cliente": "Omega Travel",
+      "categoria": "contenido",
+      "resumen": "Piezas de contenido para redes sociales alineadas a la marca.",
+      "cuerpo": "Creación de contenido para redes sociales de Omega Travel, alineado a la marca y a sus objetivos de comunicación.",
+      "portada": "content/media/casos/omega-travel-1.webp",
+      "galeria": [
+        "content/media/casos/omega-travel-2.webp",
+        "content/media/casos/omega-travel-3.webp"
+      ],
+      "video": "",
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-11-04",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "hotel-manantial",
+      "slug": "hotel-manantial",
+      "titulo": "Eventos contados con calidad e inmediatez",
+      "cliente": "Hotel Manantial",
+      "categoria": "contenido",
+      "resumen": "Recapitular los eventos realizados en la empresa y proyectarlos con calidad e inmediatez.",
+      "cuerpo": "El objetivo es recapitular los eventos realizados en la empresa y proyectarlos con calidad e inmediatez.",
+      "portada": "content/media/casos/hotel-manantial-1.webp",
+      "galeria": [
+        "content/media/casos/hotel-manantial-2.webp",
+        "content/media/casos/hotel-manantial-3.webp",
+        "content/media/casos/hotel-manantial-4.webp"
+      ],
+      "video": "",
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-11-03",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "psicomooc-congreso-ia",
+      "slug": "psicomooc-congreso-ia",
+      "titulo": "Congreso de Terapias de Tercera Generación",
+      "cliente": "Psicomooc",
+      "categoria": "ia",
+      "resumen": "Video promocional creado con inteligencia artificial para anunciar el congreso.",
+      "cuerpo": "Video promocional creado con inteligencia artificial para anunciar el Congreso de Terapias de Tercera Generación.\n\nA partir de fotografías del espacio del congreso, la IA animó a los referentes intelectuales de estas terapias. Así se logra un video dinámico y diferente sin una grabación tradicional, que presenta el evento y a sus figuras con un tono académico y profesional.",
+      "portada": "content/media/casos/psicomooc-congreso-1.webp",
+      "galeria": [
+        "content/media/casos/psicomooc-congreso-2.webp"
+      ],
+      "video": "",
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-11-02",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "lux-spa-laser",
+      "slug": "lux-spa-laser",
+      "titulo": "Tratamiento dermatológico con láser",
+      "cliente": "Lux Spa",
+      "categoria": "ia",
+      "resumen": "Video descriptivo de un tratamiento, realizado 100% con inteligencia artificial.",
+      "cuerpo": "Video descriptivo de un tratamiento dermatológico con láser para Lux Spa, realizado **100% con inteligencia artificial**.\n\nExplica de forma visual en qué consiste el procedimiento, con imágenes generadas y animadas que muestran cómo actúa el láser sobre la piel. El resultado es una pieza clara y de aspecto profesional que informa al cliente sobre el tratamiento.",
+      "portada": "content/media/casos/lux-spa-1.webp",
+      "galeria": [
+        "content/media/casos/lux-spa-2.webp",
+        "content/media/casos/lux-spa-3.webp"
+      ],
+      "video": "",
+      "metricas": [
+        {
+          "valor": "100%",
+          "etiqueta": "hecho con IA"
+        }
+      ],
+      "autor": "Torama Agency",
+      "fecha": "2026-11-01",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "polas",
+      "slug": "polas",
+      "titulo": "Polas",
+      "cliente": "Modelos, imagen de marca y creadores de contenido",
+      "categoria": "fotografia",
+      "resumen": "Para modelos, imagen de marca y creadores de contenido.",
+      "cuerpo": "Sesiones de polas para modelos, imagen de marca y creadores de contenido.",
+      "portada": "content/media/casos/polas-1.webp",
+      "galeria": [
+        "content/media/casos/polas-2.webp",
+        "content/media/casos/polas-3.webp"
+      ],
+      "video": "",
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-10-30",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "cobertura-de-eventos",
+      "slug": "cobertura-de-eventos",
+      "titulo": "Cobertura de eventos",
+      "cliente": "15 años, bodas, gender reveal y más",
+      "categoria": "fotografia",
+      "resumen": "Fotografía de 15 años, bodas, gender reveal y otros eventos.",
+      "cuerpo": "Fotografía de 15 años, bodas, gender reveal y otros eventos.",
+      "portada": "content/media/casos/eventos-1.webp",
+      "galeria": [
+        "content/media/casos/eventos-2.webp",
+        "content/media/casos/eventos-3.webp"
+      ],
+      "video": "",
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-10-29",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "sesiones-en-estudio",
+      "slug": "sesiones-en-estudio",
+      "titulo": "Sesiones en estudio",
+      "cliente": "Individuales, familiares y de cumpleaños",
+      "categoria": "fotografia",
+      "resumen": "Sesiones individuales, familiares, de cumpleaños, entre otros.",
+      "cuerpo": "Sesiones individuales, familiares, de cumpleaños, entre otros.",
+      "portada": "content/media/casos/estudio-1.webp",
+      "galeria": [
+        "content/media/casos/estudio-2.webp",
+        "content/media/casos/estudio-3.webp"
+      ],
+      "video": "",
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-10-28",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "sesiones-en-locacion",
+      "slug": "sesiones-en-locacion",
+      "titulo": "Sesiones en locación",
+      "cliente": "Llegamos hasta donde estés",
+      "categoria": "fotografia",
+      "resumen": "Llegamos hasta donde estés: realizamos la sesión de fotos que sueñas.",
+      "cuerpo": "Llegamos hasta donde estés, realizamos la sesión de fotos que sueñas.",
+      "portada": "content/media/casos/locacion-1.webp",
+      "galeria": [
+        "content/media/casos/locacion-2.webp",
+        "content/media/casos/locacion-3.webp"
+      ],
+      "video": "",
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-10-27",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "gigantografias",
+      "slug": "gigantografias",
+      "titulo": "Gigantografías",
+      "cliente": "GysFly y Viajes Contygo",
+      "categoria": "diseno",
+      "resumen": "Diseño para impresión en microperforado para agencias de viajes.",
+      "cuerpo": "Diseño para impresión en microperforado para las agencias de viajes GysFly y Viajes Contygo.",
+      "portada": "content/media/casos/gigantografias-1.webp",
+      "galeria": [
+        "content/media/casos/gigantografias-2.webp",
+        "content/media/casos/gigantografias-3.webp",
+        "content/media/casos/gigantografias-4.webp",
+        "content/media/casos/gigantografias-5.webp"
+      ],
+      "video": "",
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-10-26",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "fusion-grill",
+      "slug": "fusion-grill",
+      "titulo": "Diseño corporativo",
+      "cliente": "Fusion Grill",
+      "categoria": "diseno",
+      "resumen": "Diseño de menús y uniformes para el restaurante Fusion Grill.",
+      "cuerpo": "Diseño de menús y uniformes para el restaurante Fusion Grill.",
+      "portada": "content/media/casos/fusion-grill-1.webp",
+      "galeria": [
+        "content/media/casos/fusion-grill-2.webp",
+        "content/media/casos/fusion-grill-3.webp"
+      ],
+      "video": "",
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-10-25",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "diseno-social-media",
+      "slug": "diseno-social-media",
+      "titulo": "Diseño para social media",
+      "cliente": "ProLíder, Diseños JD y Alpha Travel",
+      "categoria": "diseno",
+      "resumen": "Diseño siguiendo los objetivos de comunicación de cada empresa.",
+      "cuerpo": "Diseño siguiendo los objetivos de comunicación de las empresas ProLíder (inmobiliaria), Diseños JD (marca de ropa deportiva) y Alpha Travel (agencia de viajes).",
+      "portada": "content/media/casos/social-media-1.webp",
+      "galeria": [
+        "content/media/casos/social-media-2.webp"
+      ],
+      "video": "",
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-10-24",
+      "destacado": false,
+      "publicado": true
+    }
+  ]
+}

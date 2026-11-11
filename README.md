@@ -14,14 +14,38 @@ python3 -m http.server 8000
 
 y abrir `http://localhost:8000`.
 
+## Páginas
+
+- `index.html` — portada inmersiva, con el formulario de contacto.
+- `casos.html` — todos los trabajos y casos de éxito, con filtros por servicio y página de detalle (`casos.html?c=…`).
+- `noticias.html` — el Noticiero: listado, búsqueda, lectura (`noticias.html?n=…`) y formulario público "Envía tu noticia".
+- `admin.html` — panel del equipo para publicar noticias y casos.
+
+## Contenido
+
+Las noticias y los casos son datos, no HTML:
+
+- `content/noticias.json` y `content/casos.json` — las entradas (título, texto en Markdown, portada, "Creado por", fecha, publicado o borrador…).
+- `content/media/` — las imágenes.
+
+Se editan desde `admin.html`. El panel habla directamente con GitHub: cada guardado es un commit en `main` y, si existe la rama `gh-pages`, la pone al día para que GitHub Pages lo publique. Para entrar hace falta una llave (fine-grained token) con permiso **Contents: Read and write** sobre este repositorio; los pasos están en la propia pantalla de acceso.
+
+Los borradores no se muestran en la web, pero al ser un repositorio público sí son visibles en GitHub.
+
+## Formularios
+
+Los formularios (contacto y "Envía tu noticia") llegan a `Contenido.toramaagency@gmail.com` a través de [FormSubmit](https://formsubmit.co), sin servidor propio. La primera vez que alguien envíe un formulario, FormSubmit manda a ese buzón un correo de activación que hay que confirmar una sola vez. Si el envío falla, el formulario ofrece mandarlo por correo o WhatsApp.
+
 ## Estructura
 
-- `index.html` — contenido de la página de inicio.
-- `css/styles.css` — estilos (paleta y tipografías del diseño de Canva).
-- `js/torii.js` — geometría única del torii (se usa en el canvas y en los SVG).
+- `css/styles.css` — estilos base y de la portada. `css/pages.css` — páginas interiores. `css/admin.css` — panel.
+- `js/torii.js` — imagotipo oficial en vectores (canvas y SVG).
 - `js/scene.js` — paisaje y túnel en canvas, guiados por el scroll.
-- `js/main.js` — navegación, ambientes por sección, revelados, contadores tipo odómetro, galería horizontal de servicios, marquesina y menú.
-- `assets/` — fotos y logos recortados de la exportación de Canva.
+- `js/main.js` — interacciones de la portada.
+- `js/content.js` — carga de contenido, Markdown seguro y envío de formularios.
+- `js/site.js` — cabecera, menú y pie de las páginas interiores.
+- `js/casos.js`, `js/noticias.js`, `js/admin.js` — lógica de cada página.
+- `assets/` — fotos, logos y tipografías.
 
 ## Marca
 
@@ -34,4 +58,4 @@ Colores, tipografía e imagotipo salen del manual corporativo:
 ## Pendiente
 
 - Sustituir los logos de clientes (`assets/clientes/`) y las fotos por los archivos originales: los actuales son recortes de la exportación de Canva.
-- Páginas internas: Quiénes somos, Servicios, Casos de éxito y Contacto.
+- Páginas internas pendientes: Quiénes somos, Servicios y Contacto.
