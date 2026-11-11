@@ -162,7 +162,7 @@
 
     function directo(m) {
       var datos = {};
-      m.campos.forEach(function (c) { datos[c[0]] = c[1]; });
+      m.campos.forEach(function (c) { if (c[1]) datos[c[0]] = c[1]; });
       if (m.email) datos.email = m.email;
       datos._subject = m.asunto; datos._template = 'table'; datos._captcha = 'false';
       return fetch('https://formsubmit.co/ajax/' + T.EMAIL, {
@@ -174,13 +174,17 @@
       e.preventDefault();
       if (!T.validar(form)) return;
       var m = { asunto: form.getAttribute('data-subject') || 'Mensaje desde la web de Torama', email: '', campos: [], _honey: '' };
-      var orden = [], valores = {};
+      var orden = [], valores = {}, tipos = {};
       Array.prototype.forEach.call(form.elements, function (el) {
         if (!el.name || el.type === 'submit' || el.tagName === 'FIELDSET') return;
         if (el.name === '_honey') { m._honey = el.value; return; }
         if (el.type === 'email' && !m.email) m.email = el.value.trim();
         var etiqueta = el.getAttribute('data-label') || el.name;
-        if (orden.indexOf(etiqueta) < 0) { orden.push(etiqueta); valores[etiqueta] = ''; }
+        if (orden.indexOf(etiqueta) < 0) {
+          orden.push(etiqueta); valores[etiqueta] = '';
+          tipos[etiqueta] = el.type === 'checkbox' ? 'opciones' : el.tagName === 'TEXTAREA' ? 'texto'
+            : ['email', 'tel', 'url'].indexOf(el.type) >= 0 ? el.type : 'linea';
+        }
         if (el.type === 'checkbox') {
           if (el.checked) valores[etiqueta] += (valores[etiqueta] ? ', ' : '') + el.value;
           return;
@@ -188,9 +192,10 @@
         valores[etiqueta] = el.value.trim();
       });
       if (m._honey) return;                              // trampa para bots
-      orden.forEach(function (k) { if (valores[k]) m.campos.push([k, valores[k]]); });
+      // Las opciones ("Me interesa") se mandan siempre, aunque no marque ninguna.
+      orden.forEach(function (k) { if (valores[k] || tipos[k] === 'opciones') m.campos.push([k, valores[k], tipos[k]]); });
 
-      var cuerpo = m.campos.map(function (c) { return c[0] + ': ' + c[1]; });
+      var cuerpo = m.campos.filter(function (c) { return c[1]; }).map(function (c) { return c[0] + ': ' + c[1]; });
       var mailto = 'mailto:' + T.EMAIL + '?subject=' + encodeURIComponent(m.asunto) + '&body=' + encodeURIComponent(cuerpo.join('\n'));
       var fallo = 'No pudimos enviarlo desde aquí. <a href="' + T.esc(mailto) + '">Envíalo por correo</a> o escríbenos por <a href="https://wa.me/13106906822" target="_blank" rel="noopener">WhatsApp</a>.';
       boton.disabled = true;

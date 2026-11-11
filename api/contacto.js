@@ -72,16 +72,127 @@ function demasiados(ip) {
 function linea(s, max) { return String(s == null ? '' : s).replace(/[\r\n\t]+/g, ' ').trim().slice(0, max); }
 function html(s) { return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
+const TIPOS = ['linea', 'email', 'tel', 'url', 'opciones', 'texto'];
+
 function limpiar(d) {
   if (d._honey) throw new Fallo(200, 'ok', { ok: true });          // trampa para bots: se ignora en silencio
   const campos = (Array.isArray(d.campos) ? d.campos : []).slice(0, MAX_CAMPOS)
-    .map((c) => Array.isArray(c) ? [linea(c[0], 80), String(c[1] == null ? '' : c[1]).trim().slice(0, MAX_VALOR)] : null)
-    .filter((c) => c && c[0] && c[1]);
-  if (!campos.length) throw new Fallo(400, 'El formulario llegó vacío.');
+    .map((c) => {
+      if (!Array.isArray(c)) return null;
+      const tipo = TIPOS.indexOf(c[2]) >= 0 ? c[2] : 'linea';
+      const valor = String(c[1] == null ? '' : c[1]).trim().slice(0, MAX_VALOR);
+      return [linea(c[0], 80), tipo === 'texto' ? valor : linea(valor, 1000), tipo];
+    })
+    .filter((c) => c && c[0] && (c[1] || c[2] === 'opciones'));    // las opciones se muestran aunque no marque ninguna
+  if (!campos.some((c) => c[1])) throw new Fallo(400, 'El formulario llegó vacío.');
   const email = linea(d.email, 200);
   if (email && !CORREO.test(email)) throw new Fallo(400, 'El correo no es válido.');
   const asunto = linea(d.asunto, 150) || 'Mensaje desde la web de Torama';
   return { asunto, email, campos };
+}
+
+/* ---------- Correo con el diseño de Torama ---------- */
+
+const C = { marino: '#12283f', verde: '#78ffc0', coral: '#e6414c', fondo: '#eef1f5', texto: '#1f2937', suave: '#6b7280', linea: '#e5e7eb' };
+const FUENTE = "font-family:Poppins,'Segoe UI',Helvetica,Arial,sans-serif;";
+
+function whatsapp(tel) {
+  const crudo = String(tel).trim();
+  let d = crudo.replace(/\D/g, '');
+  if (!crudo.startsWith('+')) {
+    if (d.length === 11 && d[0] === '0') d = '58' + d.slice(1);         // 0412… → 58412…
+    else if (d.length === 10 && d[0] === '4') d = '58' + d;             // 412…  → 58412…
+  }
+  return d.length >= 8 ? 'https://wa.me/' + d : '';
+}
+
+function fecha() {
+  try {
+    return new Intl.DateTimeFormat('es-VE', { timeZone: 'America/Caracas', dateStyle: 'full', timeStyle: 'short' }).format(new Date()) + ' (hora de Venezuela)';
+  } catch (e) { return new Date().toISOString(); }
+}
+
+function valorHtml(c) {
+  const v = html(c[1]);
+  if (c[2] === 'email' && CORREO.test(c[1])) return '<a href="mailto:' + v + '" style="color:' + C.marino + ';font-weight:600">' + v + '</a>';
+  if (c[2] === 'tel' && whatsapp(c[1])) return '<a href="' + whatsapp(c[1]) + '" style="color:' + C.marino + ';font-weight:600">' + v + '</a>';
+  if (c[2] === 'url' && /^https?:\/\//i.test(c[1])) return '<a href="' + v + '" style="color:' + C.marino + ';font-weight:600;word-break:break-all">' + v + '</a>';
+  return v;
+}
+
+function titulo(txt) {
+  return '<p style="margin:0 0 10px;' + FUENTE + 'font-size:11px;letter-spacing:1.6px;text-transform:uppercase;font-weight:700;color:' + C.coral + '">' + html(txt) + '</p>';
+}
+
+function bloque(contenido) {
+  return '<tr><td style="padding:0 32px 26px">' + contenido + '</td></tr>';
+}
+
+function plantilla(m) {
+  const datos = m.campos.filter((c) => ['linea', 'email', 'tel', 'url'].indexOf(c[2]) >= 0);
+  const opciones = m.campos.filter((c) => c[2] === 'opciones');
+  const textos = m.campos.filter((c) => c[2] === 'texto');
+  const nombre = (datos.find((c) => c[2] === 'linea') || [])[1] || '';
+  const tel = (datos.find((c) => c[2] === 'tel') || [])[1] || '';
+  const wa = tel ? whatsapp(tel) : '';
+  const prensa = /prensa/i.test(m.asunto);
+  const etiqueta = prensa ? 'Nueva nota de prensa' : 'Nuevo contacto';
+  const resumen = [nombre].concat(opciones.map((c) => c[1])).concat(textos.map((c) => c[1])).filter(Boolean).join(' · ').slice(0, 140);
+
+  let cuerpo = '';
+  if (datos.length) {
+    cuerpo += bloque(titulo(prensa ? 'Datos de la nota' : 'Datos de contacto')
+      + '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse">'
+      + datos.map((c) => '<tr>'
+        + '<td valign="top" style="padding:10px 12px 10px 0;border-bottom:1px solid ' + C.linea + ';' + FUENTE + 'font-size:13px;color:' + C.suave + ';width:34%">' + html(c[0]) + '</td>'
+        + '<td valign="top" style="padding:10px 0;border-bottom:1px solid ' + C.linea + ';' + FUENTE + 'font-size:15px;color:' + C.texto + '">' + valorHtml(c) + '</td></tr>').join('')
+      + '</table>');
+  }
+  opciones.forEach((c) => {
+    const lista = c[1] ? c[1].split(/\s*,\s*/).filter(Boolean) : [];
+    cuerpo += bloque(titulo(c[0]) + (lista.length
+      ? lista.map((o) => '<span style="display:inline-block;margin:0 6px 8px 0;padding:7px 14px;border-radius:999px;background:' + C.marino + ';color:' + C.verde + ';' + FUENTE + 'font-size:13px;font-weight:600">' + html(o) + '</span>').join('')
+      : '<p style="margin:0;' + FUENTE + 'font-size:14px;color:' + C.suave + ';font-style:italic">No marcó ninguna opción.</p>'));
+  });
+  textos.forEach((c) => {
+    cuerpo += bloque(titulo(c[0])
+      + '<div style="padding:16px 18px;background:#f7f8fa;border-left:4px solid ' + C.verde + ';border-radius:4px;' + FUENTE + 'font-size:15px;line-height:1.6;color:' + C.texto + '">' + html(c[1]).replace(/\r?\n/g, '<br>') + '</div>');
+  });
+
+  const botones = [];
+  if (m.email) botones.push('<a href="mailto:' + html(m.email) + '?subject=' + encodeURIComponent('Re: ' + m.asunto) + '" style="display:inline-block;margin:0 8px 8px 0;padding:13px 22px;border-radius:999px;background:' + C.coral + ';color:#ffffff;text-decoration:none;' + FUENTE + 'font-size:14px;font-weight:700">Responder por correo</a>');
+  if (wa) botones.push('<a href="' + wa + '" style="display:inline-block;margin:0 8px 8px 0;padding:13px 22px;border-radius:999px;background:' + C.verde + ';color:' + C.marino + ';text-decoration:none;' + FUENTE + 'font-size:14px;font-weight:700">Escribir por WhatsApp</a>');
+  if (botones.length) cuerpo += bloque('<div style="padding-top:4px">' + botones.join('') + '</div>');
+
+  return '<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + html(m.asunto) + '</title></head>'
+    + '<body style="margin:0;padding:0;background:' + C.fondo + '">'
+    + '<div style="display:none;max-height:0;overflow:hidden;opacity:0">' + html(resumen) + '</div>'
+    + '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:' + C.fondo + '"><tr><td align="center" style="padding:28px 12px">'
+    + '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden">'
+    + '<tr><td align="center" style="background:' + C.marino + ';padding:30px 24px 26px">'
+    + '<img src="' + SITIO + '/assets/email/logo-torama.png" width="88" height="112" alt="Torama Agency" style="display:block;border:0;width:88px;height:112px">'
+    + '<p style="margin:18px 0 0;' + FUENTE + 'font-size:11px;letter-spacing:2.4px;text-transform:uppercase;font-weight:700;color:' + C.verde + '">' + etiqueta + '</p>'
+    + '</td></tr>'
+    + '<tr><td style="padding:28px 32px 22px">'
+    + '<h1 style="margin:0 0 6px;' + FUENTE + 'font-size:22px;line-height:1.3;color:' + C.marino + '">' + (nombre ? html(nombre) + (prensa ? ' envió una nota de prensa' : ' te escribió desde la web') : html(m.asunto)) + '</h1>'
+    + '<p style="margin:0;' + FUENTE + 'font-size:13px;color:' + C.suave + '">' + html(fecha()) + '</p>'
+    + '</td></tr>'
+    + cuerpo
+    + '<tr><td style="padding:18px 32px;background:#f7f8fa;border-top:1px solid ' + C.linea + ';' + FUENTE + 'font-size:12px;line-height:1.5;color:' + C.suave + '">'
+    + 'Recibido desde el formulario de <a href="' + SITIO + '" style="color:' + C.suave + '">' + html(SITIO.replace(/^https?:\/\//, '')) + '</a>.'
+    + (m.email ? ' Si respondes a este correo, la respuesta le llega directamente a ' + html(nombre || m.email) + '.' : '')
+    + '</td></tr>'
+    + '</table></td></tr></table></body></html>';
+}
+
+function textoPlano(m) {
+  const partes = [m.asunto, fecha(), ''];
+  m.campos.forEach((c) => {
+    if (c[2] === 'texto') partes.push('', c[0].toUpperCase(), c[1], '');
+    else partes.push(c[0] + ': ' + (c[1] || (c[2] === 'opciones' ? 'No marcó ninguna opción' : '')));
+  });
+  partes.push('', '— Recibido desde el formulario de ' + SITIO);
+  return partes.join('\n');
 }
 
 async function porGmail(m) {
@@ -90,18 +201,14 @@ async function porGmail(m) {
     host: 'smtp.gmail.com', port: 465, secure: true,
     auth: { user: process.env.GMAIL_USER, pass: String(process.env.GMAIL_APP_PASSWORD).replace(/\s+/g, '') }
   });
-  const texto = m.campos.map((c) => c[0] + ': ' + c[1]).join('\n') + '\n\n— Enviado desde ' + SITIO;
-  const tabla = '<table cellpadding="8" style="border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px">'
-    + m.campos.map((c) => '<tr><th align="left" valign="top" style="background:#12283f;color:#fff;white-space:nowrap">' + html(c[0])
-      + '</th><td style="border-bottom:1px solid #e5e7eb">' + html(c[1]).replace(/\n/g, '<br>') + '</td></tr>').join('')
-    + '</table><p style="font-family:Arial,sans-serif;font-size:12px;color:#6b7280">Enviado desde ' + html(SITIO) + '</p>';
+  const nombre = (m.campos.find((c) => c[2] === 'linea') || [])[1];
   await t.sendMail({
     from: { name: 'Web Torama', address: process.env.GMAIL_USER },
     to: (process.env.CONTACT_TO || process.env.GMAIL_USER).trim(),
-    replyTo: m.email || undefined,
-    subject: m.asunto,
-    text: texto,
-    html: tabla
+    replyTo: m.email ? { name: nombre || '', address: m.email } : undefined,
+    subject: nombre ? m.asunto + ' — ' + nombre : m.asunto,
+    text: textoPlano(m),
+    html: plantilla(m)
   });
   return { ok: true, via: 'gmail' };
 }
