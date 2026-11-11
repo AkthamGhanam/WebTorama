@@ -2,7 +2,7 @@
 
 Página de inicio inmersiva de **Torama Agency**, construida a partir del diseño "Sitio Web Torama" de Canva.
 
-Al hacer scroll, el sello (el torii dentro del círculo) se convierte en una puerta real y la cámara la cruza para recorrer un túnel de torii hasta llegar "Dentro de Torama".
+Al hacer scroll, el sello (el torii dentro del círculo) se convierte en una puerta real y la cámara la cruza para recorrer un túnel de torii sobre el agua, de noche, hasta llegar "Dentro de Torama". Al seguir bajando la escena pasa de la noche al amanecer y cada sección cambia de ambiente, hasta el pie con el sol saliendo tras la puerta.
 
 ## Ver en local
 
@@ -19,8 +19,8 @@ y abrir `http://localhost:8000`.
 - `index.html` — contenido de la página de inicio.
 - `css/styles.css` — estilos (paleta y tipografías del diseño de Canva).
 - `js/torii.js` — geometría única del torii (se usa en el canvas y en los SVG).
-- `js/scene.js` — escena del túnel en canvas, guiada por el scroll.
-- `js/main.js` — revelados, contadores, galería horizontal de servicios, marquesina y menú.
+- `js/scene.js` — paisaje y túnel en canvas, guiados por el scroll.
+- `js/main.js` — navegación, ambientes por sección, revelados, contadores tipo odómetro, galería horizontal de servicios, marquesina y menú.
 - `assets/` — fotos y logos recortados de la exportación de Canva.
 
 ## Pendiente

@@ -27,9 +27,9 @@
 
   window.TORII = { roof: ROOF, body: BODY, extra: EXTRA };
 
-  // Inyecta la forma en el <symbol> compartido del documento
-  var g = document.getElementById('torama-gate-shape');
-  if (g) {
-    g.innerHTML = '<path d="' + ROOF + ' ' + BODY + ' ' + EXTRA + '"/>';
-  }
+  // Inyecta la forma en los SVG compartidos del documento
+  document.querySelectorAll('[data-torii]').forEach(function (g) {
+    var d = ROOF + ' ' + BODY + (g.getAttribute('data-torii') === 'logo' ? ' ' + EXTRA : '');
+    g.innerHTML = '<path d="' + d + '"/>';
+  });
 })();
