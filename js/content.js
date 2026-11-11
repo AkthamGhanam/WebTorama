@@ -6,8 +6,8 @@
   var T = (window.Torama = window.Torama || {});
 
   // Buzón público de los formularios: enlace "Envíalo por correo" y envío directo
-  // donde no hay servidor (GitHub Pages). En Vercel el destino lo decide
-  // api/contacto.js (variable CONTACT_TO).
+  // a FormSubmit cuando no hay servidor o falta configurar Gmail. Con Gmail
+  // configurado en Vercel, el destino lo decide api/contacto.js.
   T.EMAIL = 'Contenido.toramaagency@gmail.com';
   T.CATEGORIAS = {
     'meta-ads': 'Meta Ads',
@@ -152,8 +152,9 @@
     });
   };
 
-  /* Formularios que llegan por correo. En Vercel se envían a la función propia
-     /api/contacto (mismo dominio); sin servidor, directo a FormSubmit. */
+  /* Formularios que llegan por correo. Se envían a la función propia
+     /api/contacto (mismo dominio, Gmail); si no está disponible o no tiene
+     Gmail configurado, directo a FormSubmit. */
   T.formulario = function (form) {
     var estado = form.querySelector('.form__status');
     var boton = form.querySelector('[type="submit"]');
@@ -199,7 +200,10 @@
         method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(m)
       }).then(function (r) {
         if (r.status === 404 || r.status === 405) return directo(m);   // sin servidor (GitHub Pages, local)
-        return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok && j.ok === true, activacion: !!j.activacion, error: j.error }; });
+        return r.json().catch(function () { return {}; }).then(function (j) {
+          if (j.sinCorreo) return directo(m);                            // servidor sin Gmail configurado
+          return { ok: r.ok && j.ok === true, activacion: !!j.activacion };
+        });
       }).then(function (res) {
         boton.disabled = false;
         if (res.ok) {

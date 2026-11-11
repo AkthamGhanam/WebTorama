@@ -1,29 +1,24 @@
 /* Función de servidor (Vercel) que recibe los formularios de la web y los
-   entrega por correo.
+   entrega por correo con una cuenta de Gmail.
 
    El navegador del visitante solo habla con el propio dominio de la web
-   (/api/contacto). Desde aquí el mensaje sale por una de estas dos vías:
-
-   1. Gmail (recomendada): si existen GMAIL_USER y GMAIL_APP_PASSWORD, el
-      correo se envía con esa cuenta por SMTP. No necesita activación.
-   2. FormSubmit (respaldo): si no hay credenciales de Gmail, se reenvía a
-      FormSubmit desde el servidor. La primera vez FormSubmit manda un correo
-      de activación al buzón de destino que hay que confirmar una sola vez.
+   (/api/contacto), así que funciona desde cualquier red. El correo sale por
+   SMTP con la cuenta de GMAIL_USER, sin servicios intermedios ni correos de
+   activación. "Responder" en el correo contesta directamente al visitante.
 
    Variables de entorno (Vercel → Settings → Environment Variables):
-     CONTACT_TO          Buzón que recibe los formularios.
-     GMAIL_USER          Opcional. Cuenta de Gmail que envía (p. ej. la misma
-                         del buzón de destino).
-     GMAIL_APP_PASSWORD  Opcional. "Contraseña de aplicación" de esa cuenta
-                         (Cuenta de Google → Seguridad → Contraseñas de
-                         aplicaciones; requiere verificación en dos pasos).
-     SITE_URL            Opcional. Dirección pública de la web, usada con
-                         FormSubmit. Por defecto https://toramaagency.com      */
+     GMAIL_USER          Cuenta de Gmail que envía los formularios.
+     GMAIL_APP_PASSWORD  "Contraseña de aplicación" de esa cuenta (Cuenta de
+                         Google → Seguridad → Verificación en dos pasos →
+                         Contraseñas de aplicaciones).
+     CONTACT_TO          Opcional. Buzón que recibe los formularios. Por
+                         defecto, el mismo GMAIL_USER.
+     SITE_URL            Opcional. Dirección pública de la web, para el pie del
+                         correo. Por defecto https://toramaagency.com
 
-// TEMPORAL: buzón de prueba mientras se activa el formulario. Para recibir en
-// el buzón definitivo, define CONTACT_TO = Contenido.toramaagency@gmail.com en
-// Vercel (o cambia este valor).
-const DESTINO = (process.env.CONTACT_TO || 'ghanamaktham@gmail.com').trim();
+   Sin GMAIL_USER/GMAIL_APP_PASSWORD responde 503 { sinCorreo: true } y el
+   navegador prueba a enviar directo a FormSubmit como respaldo.             */
+
 const SITIO = (process.env.SITE_URL || 'https://toramaagency.com').replace(/\/+$/, '');
 const DOMINIOS = ['toramaagency.com', 'www.toramaagency.com', 'webtorama.vercel.app'];
 const CORREO = /^[^\s@<>()",;]+@[^\s@<>()",;]+\.[^\s@<>()",;]{2,}$/;
@@ -102,39 +97,13 @@ async function porGmail(m) {
     + '</table><p style="font-family:Arial,sans-serif;font-size:12px;color:#6b7280">Enviado desde ' + html(SITIO) + '</p>';
   await t.sendMail({
     from: { name: 'Web Torama', address: process.env.GMAIL_USER },
-    to: DESTINO,
+    to: (process.env.CONTACT_TO || process.env.GMAIL_USER).trim(),
     replyTo: m.email || undefined,
     subject: m.asunto,
     text: texto,
     html: tabla
   });
   return { ok: true, via: 'gmail' };
-}
-
-async function porFormSubmit(m) {
-  const datos = {};
-  m.campos.forEach((c) => { datos[c[0]] = c[1]; });
-  if (m.email) datos.email = m.email;
-  datos._subject = m.asunto;
-  datos._template = 'table';
-  datos._captcha = 'false';
-  let r, j = {};
-  try {
-    r = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(DESTINO), {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json', Origin: SITIO, Referer: SITIO + '/' },
-      body: JSON.stringify(datos),
-      signal: AbortSignal.timeout(15000)
-    });
-    j = await r.json().catch(() => ({}));
-  } catch (e) {
-    throw new Fallo(502, 'No se pudo contactar con el servicio de correo.');
-  }
-  if (r.ok && String(j.success) === 'true') return { ok: true, via: 'formsubmit' };
-  if (/activ/i.test(String(j.message || ''))) {
-    throw new Fallo(503, 'El formulario está pendiente de activación.', { activacion: true });
-  }
-  throw new Fallo(502, 'El servicio de correo rechazó el envío.', { detalle: linea(j.message || ('HTTP ' + r.status), 200) });
 }
 
 module.exports = async function handler(req, res) {
@@ -144,8 +113,10 @@ module.exports = async function handler(req, res) {
     const ip = String(req.headers['x-forwarded-for'] || req.socket && req.socket.remoteAddress || '').split(',')[0].trim();
     if (demasiados(ip)) return responder(res, 429, { ok: false, error: 'Demasiados envíos seguidos. Prueba en unos minutos.' });
     const m = limpiar(await leerCuerpo(req));
-    const gmail = process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD;
-    return responder(res, 200, gmail ? await porGmail(m) : await porFormSubmit(m));
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+      return responder(res, 503, { ok: false, sinCorreo: true, error: 'El correo del formulario aún no está configurado.' });
+    }
+    return responder(res, 200, await porGmail(m));
   } catch (e) {
     if (e instanceof Fallo) return responder(res, e.status, Object.assign({ ok: e.status === 200, error: e.status === 200 ? undefined : e.message }, e.extra));
     console.error('contacto:', e && e.message);

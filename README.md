@@ -49,9 +49,9 @@ Los borradores no se muestran en la web, pero al ser un repositorio público sí
    | `TEAM_KEY` | La clave que usará el equipo para entrar al panel. Larga y difícil de adivinar. |
    | `GITHUB_TOKEN` | El token del paso 2. |
    | `PUBLISH_BRANCH` | Opcional. Déjala vacía si ya no se usa GitHub Pages; por defecto pone al día `gh-pages`. |
-   | `CONTACT_TO` | Buzón que recibe los formularios, p. ej. `Contenido.toramaagency@gmail.com`. |
-   | `GMAIL_USER` | Opcional. Cuenta de Gmail que envía los formularios. |
-   | `GMAIL_APP_PASSWORD` | Opcional. Contraseña de aplicación de esa cuenta (ver "Formularios"). |
+   | `GMAIL_USER` | Cuenta de Gmail que envía y recibe los formularios (ver "Formularios"). |
+   | `GMAIL_APP_PASSWORD` | Contraseña de aplicación de esa cuenta. |
+   | `CONTACT_TO` | Opcional. Otro buzón donde recibir los formularios. |
 
 4. Vuelve a desplegar (**Deployments → Redeploy**) para que tome las variables.
 
@@ -59,14 +59,16 @@ Para cambiar la clave del equipo basta con cambiar `TEAM_KEY` y volver a despleg
 
 ## Formularios
 
-Los formularios (contacto y "Envía tu nota de prensa") se envían a la función propia `api/contacto.js`, en el mismo dominio de la web. Así el visitante no necesita poder abrir ningún servicio externo (formsubmit.co, por ejemplo, no carga desde algunas redes). La función entrega el mensaje por correo de una de estas dos formas:
+Los formularios (contacto y "Envía tu nota de prensa") se envían a la función propia `api/contacto.js`, en el mismo dominio de la web, así que funcionan desde cualquier red (formsubmit.co, por ejemplo, no carga desde algunas redes de Venezuela). La función manda el correo por Gmail con la cuenta de `GMAIL_USER`: sin servicios intermedios ni correos de activación, y "Responder" contesta directamente al visitante.
 
-1. **Gmail (recomendada).** Si están `GMAIL_USER` y `GMAIL_APP_PASSWORD`, envía con esa cuenta. No necesita activación y la respuesta va directa al visitante ("Responder").
-2. **FormSubmit (respaldo).** Sin credenciales de Gmail, reenvía a [FormSubmit](https://formsubmit.co) desde el servidor. La primera vez FormSubmit manda al buzón de destino un correo «Activate Form» que hay que confirmar una sola vez.
+Para activarlo:
 
-Donde no hay servidor (GitHub Pages, `python3 -m http.server`) el formulario va directo a FormSubmit con el buzón de `T.EMAIL` (`js/content.js`). Si el envío falla, ofrece mandarlo por correo o WhatsApp.
+1. Entra en la cuenta de Google que va a enviar los formularios (por ejemplo `Contenido.toramaagency@gmail.com`) → **Gestionar tu cuenta de Google → Seguridad**. Activa la **Verificación en dos pasos** si no lo está.
+2. Busca **Contraseñas de aplicaciones** (myaccount.google.com/apppasswords), crea una llamada "Web Torama" y copia los 16 caracteres.
+3. En Vercel → **Settings → Environment Variables** añade `GMAIL_USER` (el correo) y `GMAIL_APP_PASSWORD` (la contraseña de aplicación). Opcional: `CONTACT_TO` si quieres recibir en otro buzón.
+4. **Deployments → Redeploy** para que tome las variables.
 
-Para la contraseña de aplicación de Gmail: **Cuenta de Google → Seguridad → Verificación en dos pasos** (activada) **→ Contraseñas de aplicaciones**, crea una llamada "Web Torama" y copia los 16 caracteres en `GMAIL_APP_PASSWORD`.
+Mientras falten esas variables, o donde no hay servidor (GitHub Pages, `python3 -m http.server`), el formulario prueba a enviar directo a [FormSubmit](https://formsubmit.co) con el buzón de `T.EMAIL` (`js/content.js`), que la primera vez exige confirmar un correo «Activate Form». Si el envío falla, ofrece mandarlo por correo o WhatsApp.
 
 ## Estructura
 
@@ -78,7 +80,7 @@ Para la contraseña de aplicación de Gmail: **Cuenta de Google → Seguridad �
 - `js/site.js` — cabecera, menú y pie de las páginas interiores.
 - `js/casos.js`, `js/noticias.js`, `js/admin.js` — lógica de cada página.
 - `api/panel.js` — función de servidor (Vercel) que valida la clave del equipo y publica en el repositorio.
-- `api/contacto.js` — función de servidor que recibe los formularios y los envía por correo.
+- `api/contacto.js` — función de servidor que recibe los formularios y los envía por Gmail.
 - `api/seo.js` — genera `/sitemap.xml` (páginas, noticias y casos publicados) y `/robots.txt` con el dominio en uso.
 - `assets/` — fotos, logos y tipografías.
 
