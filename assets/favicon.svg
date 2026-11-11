@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-112 -112 224 224">
+  <rect x="-112" y="-112" width="224" height="224" rx="48" fill="#12283e"/>
+  <g fill="#fff" transform="translate(0 -4)">
+    <path d="M-104 -70 Q-52 -55 0 -55 Q52 -55 104 -70 L97 -49 Q50 -39 0 -39 Q-50 -39 -97 -49 Z"/>
+    <path d="M-84 -46 Q0 -34 84 -46 L81 -35 Q0 -25 -81 -35 Z M-80 -13 H80 V-3 H-80 Z M-61 -34 H-49 L-48 76 H-62 Z M49 -34 H61 L62 76 H48 Z M-66 62 H-44 V76 H-66 Z M44 62 H66 V76 H44 Z"/>
+  </g>
+</svg>

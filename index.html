@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Torama Agency · Juntos hacemos marketing de resultados</title>
+  <meta name="description" content="Torama Agency es una agencia de comunicación y publicidad digital que acompaña a marcas en Venezuela y a nivel internacional: Meta Ads, creación de contenido, producción audiovisual y diseño gráfico.">
+  <meta name="theme-color" content="#12283e">
+  <meta property="og:title" content="Torama Agency · Marketing de resultados">
+  <meta property="og:description" content="Cruza la puerta. Campañas de Meta Ads, contenido, producción audiovisual y diseño gráfico con propuestas 100% personalizadas.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#nosotros">Saltar al contenido</a>
+
+  <!-- Escena fija: túnel de torii dibujado en canvas -->
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="halftone" aria-hidden="true"></div>
+  <div class="flash" aria-hidden="true"></div>
+
+  <header class="top" id="top">
+    <a class="brand" href="#inicio" aria-label="Torama Agency, inicio">
+      <svg class="brand__mark" viewBox="-112 -112 224 224" aria-hidden="true"><use href="#torama-mark"/></svg>
+      <span class="brand__name">Torama <b>Agency</b></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="#nosotros">Quiénes somos</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#resultados">Casos de éxito</a>
+      <a href="#clientes">Clientes</a>
+      <a class="nav__cta" href="#contacto">Hablemos</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  </header>
+
+  <!-- Definición única del sello (se reutiliza en header, footer y cierre) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="tg-band" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#1a3d87"/><stop offset=".55" stop-color="#2456b8"/><stop offset="1" stop-color="#49d3de"/>
+      </linearGradient>
+      <clipPath id="tg-clip"><circle cx="0" cy="5" r="94"/></clipPath>
+      <g id="torama-mark">
+        <g clip-path="url(#tg-clip)">
+          <path d="M-70 80 L100 -62 L100 -8 L-20 92 Z" fill="url(#tg-band)"/>
+          <path d="M20 -40 L100 -100 L100 -66 L52 -30 Z" fill="#49d3de" opacity=".85"/>
+        </g>
+        <path d="M 48 88.1 A 96 96 0 1 1 83.1 53" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/>
+        <g fill="#fff" id="torama-gate-shape"></g>
+      </g>
+    </defs>
+  </svg>
+
+  <main>
+    <!-- ============ ESCENA 1 · LA PUERTA ============ -->
+    <section class="stage" id="inicio" aria-label="Inicio">
+      <div class="stage__pin">
+        <div class="hero" id="hero">
+          <div class="hero__mark" aria-hidden="true">
+            <p class="wordmark">Torama<b>Agency</b></p>
+          </div>
+          <div class="hero__copy">
+            <p class="eyebrow">Estamos para crecer juntos</p>
+            <h1><span class="thin">Juntos hacemos</span> Marketing de resultados</h1>
+            <div class="btns">
+              <a class="btn btn--red" href="#contacto">Hablemos de tu proyecto</a>
+              <a class="btn btn--blue" href="#servicios">Conoce nuestros servicios</a>
+            </div>
+          </div>
+          <div class="scrollcue" aria-hidden="true"><span>Desliza y cruza la puerta</span><i></i></div>
+        </div>
+
+        <!-- Texto accesible del recorrido (las palabras se dibujan en el canvas) -->
+        <p class="sr-only">Estrategia. Creatividad. Colaboración. Juntos hacemos marketing de resultados.</p>
+
+        <div class="arrive" id="arrive">
+          <p class="arrive__pre">Bienvenido</p>
+          <h2>Dentro de <em>Torama</em></h2>
+          <p class="arrive__post">Estamos para crecer juntos</p>
+        </div>
+
+        <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+      </div>
+    </section>
+
+    <!-- ============ DENTRO DE TORAMA ============ -->
+    <section class="sec about" id="nosotros">
+      <div class="wrap about__grid">
+        <div class="about__text">
+          <p class="kicker reveal">Sobre nosotros…</p>
+          <h2 class="title reveal">¿Quiénes <em>somos</em>?</h2>
+          <p class="lead reveal">Torama Agency es una agencia de comunicación y publicidad digital que acompaña a marcas en Venezuela y a nivel internacional, especializada en campañas de Meta Ads, creación de contenido, producción audiovisual y diseño gráfico.</p>
+          <p class="lead reveal">Trabajamos como un equipo colaborativo, con <strong>propuestas 100% personalizadas</strong> para cada cliente.</p>
+          <ul class="pillars reveal" aria-label="Lo que nos mueve">
+            <li>Creatividad</li><li>Estrategia</li><li>Colaboración</li>
+          </ul>
+        </div>
+        <figure class="about__photo reveal tilt">
+          <img src="assets/img/equipo.webp" alt="El equipo de Torama Agency reunido con tablets, cámara y claqueta" width="516" height="370" loading="lazy">
+          <figcaption>Somos el equipo Torama Agency</figcaption>
+        </figure>
+      </div>
+
+      <div class="wrap dna">
+        <article class="dna__card reveal"><h3>Misión</h3><p>Brindar un servicio profesional que genere bienestar, crecimiento y tranquilidad en los proyectos asumidos.</p></article>
+        <article class="dna__card reveal"><h3>Visión</h3><p>Convertirse en la agencia preferida por las medianas empresas de Valencia para la gestión de proyectos comunicacionales.</p></article>
+        <article class="dna__card reveal"><h3>Valores</h3><p>Respeto. Honestidad. Transparencia. Colaboración. Integridad.</p></article>
+      </div>
+    </section>
+
+    <!-- ============ RESULTADOS ============ -->
+    <section class="sec results" id="resultados">
+      <div class="wrap">
+        <p class="kicker reveal">No gastes en publicidad</p>
+        <h2 class="title title--xl reveal">Invierte en <em>resultados</em></h2>
+        <p class="results__case reveal">Caso real · Aponwao VE · Campañas en Meta Ads · 1 mes</p>
+        <div class="stats">
+          <div class="stat reveal"><b data-count="112.06" data-prefix="$" data-decimals="2">$112,06</b><span>invertidos en un mes</span></div>
+          <div class="stat reveal"><b data-count="678">678</b><span>mensajes recibidos</span></div>
+          <div class="stat reveal"><b data-count="217">217</b><span>ventas concretadas</span></div>
+          <div class="stat stat--hot reveal"><b data-count="700" data-prefix="+" data-suffix="%">+700%</b><span>de retorno sobre la inversión</span></div>
+        </div>
+        <ul class="minicases reveal">
+          <li><strong>ICOR</strong> · Instituto de Comunicación y Oratoria — con solo $25 obtuvo 117 mensajes y cerró 15.</li>
+          <li><strong>Tienda de ropa para caballeros</strong> — $67 invertidos, 347 mensajes y 120 ventas cerradas.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ SERVICIOS (recorrido horizontal) ============ -->
+    <section class="services" id="servicios" aria-label="Nuestros servicios">
+      <div class="services__pin">
+        <div class="wrap services__head">
+          <p class="kicker">En Torama Agency realizamos…</p>
+          <h2 class="title">Nuestros <em>Servicios</em></h2>
+        </div>
+        <div class="services__track" id="track">
+          <article class="card">
+            <img src="assets/img/servicio-meta-ads.webp" alt="Panel de resultados de campañas en un portátil" loading="lazy">
+            <div class="card__body"><span class="card__n">01 · Nuestra especialidad</span><h3>Campañas publicitarias <em>en Meta Ads</em></h3><p>Realizamos la configuración, gestión y optimización de campañas publicitarias en Facebook e Instagram.</p></div>
+          </article>
+          <article class="card">
+            <img src="assets/img/servicio-audiovisual.webp" alt="Rodaje en estudio con fondo blanco" loading="lazy">
+            <div class="card__body"><span class="card__n">02</span><h3>Producción Audiovisual <em>de alta calidad</em></h3><p>Rodaje y edición de video: reels, testimoniales, contenido de marca.</p></div>
+          </article>
+          <article class="card">
+            <img src="assets/img/servicio-contenido.webp" alt="Guion de producción audiovisual en pantalla" loading="lazy">
+            <div class="card__body"><span class="card__n">03</span><h3>Creación de Contenido <em>alineado a tu marca</em></h3><p>Planificación y producción de contenido para redes sociales, adaptado a cada marca y objetivo.</p></div>
+          </article>
+          <article class="card">
+            <img src="assets/img/servicio-ia.webp" alt="Reel generado con inteligencia artificial en un teléfono" loading="lazy">
+            <div class="card__body"><span class="card__n">04</span><h3>Generación de Contenido <em>con IA</em></h3><p>Producción de piezas y contenido apoyado en inteligencia artificial.</p></div>
+          </article>
+          <article class="card">
+            <img src="assets/img/servicio-fotografia.webp" alt="Fotógrafo retratando a una quinceañera en un balcón" loading="lazy">
+            <div class="card__body"><span class="card__n">05</span><h3>Fotografía <em>profesional</em></h3><p>Sesiones fotográficas de producto, marca y evento.</p></div>
+          </article>
+          <article class="card">
+            <img src="assets/img/servicio-diseno.webp" alt="Diseño de un flyer de viajes en un editor gráfico" loading="lazy">
+            <div class="card__body"><span class="card__n">06</span><h3>Diseño Gráfico <em>profesional</em></h3><p>Piezas gráficas para redes, publicidad y marca: posts, carruseles, flyers, banners.</p></div>
+          </article>
+          <article class="card card--plain">
+            <div class="card__body"><span class="card__n">07</span><h3>Auditoría de estrategia <em>comercial y marketing</em></h3><p>Una revisión integral de cómo tu empresa atrae, atiende y convierte clientes: basada en evidencia, orientada a la acción y con visión 360.</p></div>
+          </article>
+          <article class="card">
+            <img src="assets/img/servicio-formaciones.webp" alt="Equipo de una empresa tras una formación con Torama" loading="lazy">
+            <div class="card__body"><span class="card__n">08</span><h3>Formaciones <em>In-Company</em></h3><p>Un programa de capacitación diseñado a medida para el equipo de tu empresa, impartido por Torama Agency.</p></div>
+          </article>
+          <article class="card card--cta">
+            <div class="card__body"><h3>Presupuestos <em>100% personalizados</em></h3><p>Cada plan se adapta al proyecto, a los resultados esperados y al presupuesto del cliente.</p><a class="btn btn--red" href="#contacto">Recibe el tuyo</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CLIENTES ============ -->
+    <section class="sec clients" id="clientes">
+      <div class="wrap center">
+        <p class="kicker reveal">Juntos hacemos que…</p>
+        <h2 class="title title--xl reveal">El sello <em>Torama</em> <span class="beat">lata</span> en cada proyecto</h2>
+      </div>
+      <div class="marquee reveal" aria-label="Marcas que confían en Torama">
+        <div class="marquee__row" id="logos-a"></div>
+        <div class="marquee__row marquee__row--rev" id="logos-b"></div>
+      </div>
+    </section>
+
+    <!-- ============ CIERRE ============ -->
+    <section class="sec closing" id="contacto">
+      <div class="wrap center">
+        <svg class="closing__gate reveal" viewBox="-112 -112 224 224" aria-hidden="true"><use href="#torama-mark"/></svg>
+        <p class="kicker reveal">Hagamos que</p>
+        <h2 class="title title--xl reveal">El sello <em>Torama</em> viva en <span class="tu">tu</span> proyecto</h2>
+        <div class="btns btns--center reveal">
+          <a class="btn btn--red btn--lg" href="https://wa.me/13106906822" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+          <a class="btn btn--blue btn--lg" href="mailto:Toramaagency@gmail.com">Toramaagency@gmail.com</a>
+        </div>
+        <dl class="info reveal">
+          <div><dt>WhatsApp</dt><dd><a href="https://wa.me/13106906822" target="_blank" rel="noopener">+1 (310) 690-6822</a></dd></div>
+          <div><dt>Horario de atención</dt><dd>Lunes a viernes<br>9:00 am a 5:00 pm</dd></div>
+          <div><dt>Ubicación</dt><dd>Valencia, Venezuela<br>San Diego, Urb. La Esmeralda</dd></div>
+          <div><dt>Remoto</dt><dd>Llegamos a donde tú nos llames, estés donde estés</dd></div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <a class="brand" href="#inicio" aria-label="Volver al inicio">
+        <svg class="brand__mark" viewBox="-112 -112 224 224" aria-hidden="true"><use href="#torama-mark"/></svg>
+        <span class="brand__name">Torama <b>Agency</b></span>
+      </a>
+      <nav aria-label="Pie">
+        <a href="#nosotros">Quiénes somos</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#resultados">Casos de éxito</a>
+        <a href="#contacto">Contáctanos</a>
+      </nav>
+      <p class="foot__social">
+        <a href="https://www.instagram.com/toramaagency" target="_blank" rel="noopener">@toramaagency</a>
+        <a href="https://www.facebook.com/Toramaagency" target="_blank" rel="noopener">Facebook</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/torii.js"></script>
+  <script src="js/scene.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
