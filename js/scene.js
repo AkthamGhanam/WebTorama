@@ -10,13 +10,16 @@
   if (!cv || !window.TORII) return;
   var ctx = cv.getContext('2d');
 
-  var pGate = new Path2D(window.TORII.gate);
+  var pGate = new Path2D(window.TORII.gate);      // torii suelto (túnel)
+  var pMark = new Path2D(window.TORII.mark);      // sello exacto (logo en reposo)
   var pRing = new Path2D(window.TORII.ring);
+  var AUR = window.TORII.aurora, aurora = new Image();
+  aurora.src = AUR.src;
   // Medidas del torii oficial (unidades locales)
-  var OPEN = 39;        // semiancho del paso entre pilares
-  var LINTEL = -18;     // borde inferior del travesaño
-  var GROUND = 79.5;    // base de los pilares
-  var ROOF_Y = -43;     // límite inferior de la viga superior
+  var OPEN = 38;        // semiancho del paso entre pilares
+  var LINTEL = -20;     // borde inferior del travesaño
+  var GROUND = 79.4;    // base de los pilares
+  var ROOF_Y = -37.5;     // límite inferior de la viga superior
 
   var S = (window.Scene = {
     target: 0,          // progreso del túnel (0..1) que marca el scroll
@@ -191,6 +194,7 @@
 
     var m = idx === 0 ? smooth(0.05, 0.2, p) : 1;      // blanco de logo -> rojo real
     var deco = idx === 0 ? 1 - smooth(0.035, 0.15, p) : 0;
+    var exacto = idx === 0 ? 1 - smooth(0.012, 0.05, p) : 0;   // en reposo se ve el logo tal cual
 
     ctx.save();
     ctx.translate(vx - (mx * R * 0.1) / d, vy - (my * R * 0.06) / d);
@@ -203,22 +207,10 @@
       ctx.save();
       ctx.translate(0, 5); ctx.scale(sc, sc); ctx.translate(0, -5);
       ctx.globalAlpha = a * deco * 0.6;
-      ctx.fillStyle = 'rgb(12,27,44)';                   // disco oscuro para que el sello resalte sobre el paisaje
-      ctx.beginPath(); ctx.arc(-0.4, 2.8, 92, 0, Math.PI * 2); ctx.fill();
-      ctx.save();
-      ctx.beginPath(); ctx.arc(-0.4, 2.8, 92, 0, Math.PI * 2); ctx.clip();
-      // Aurora ascendente (camino) en el verde de la marca
+      ctx.fillStyle = 'rgb(18,40,63)';                   // disco del azul de marca para que el sello resalte sobre el paisaje
+      ctx.beginPath(); ctx.arc(0, 5, 93, 0, Math.PI * 2); ctx.fill();
       ctx.globalAlpha = a * deco;
-      var bg = ctx.createLinearGradient(-90, 40, 95, -40);
-      bg.addColorStop(0, '#0a5a58'); bg.addColorStop(0.55, '#35c79a'); bg.addColorStop(1, '#78ffc0');
-      ctx.fillStyle = bg;
-      ctx.beginPath(); ctx.moveTo(-94, 8); ctx.bezierCurveTo(-60, 40, -30, 30, 0, 5); ctx.bezierCurveTo(30, -20, 60, -40, 96, -48);
-      ctx.lineTo(96, -6); ctx.bezierCurveTo(60, 0, 35, 16, 5, 40); ctx.bezierCurveTo(-25, 62, -60, 64, -90, 44); ctx.closePath(); ctx.fill();
-      ctx.globalAlpha = a * deco * 0.8;
-      ctx.fillStyle = '#c4ffe4';
-      ctx.beginPath(); ctx.moveTo(14, -44); ctx.bezierCurveTo(44, -62, 70, -70, 96, -74); ctx.lineTo(96, -52); ctx.bezierCurveTo(70, -48, 50, -40, 30, -27); ctx.closePath(); ctx.fill();
-      ctx.restore();
-      ctx.globalAlpha = a * deco;
+      if (aurora.complete && aurora.naturalWidth) ctx.drawImage(aurora, AUR.x, AUR.y, AUR.size, AUR.size);   // aurora azul del logo
       ctx.fillStyle = '#fff'; ctx.fill(pRing, 'evenodd');
       ctx.restore();
     }
@@ -235,7 +227,7 @@
       ctx.globalCompositeOperation = 'lighter';
       ctx.globalAlpha = a * m * 0.5;
       for (var s = -1; s <= 1; s += 2) {
-        var lx = s * 47;
+        var lx = s * 46;
         var g = ctx.createRadialGradient(lx, GROUND, 0, lx, GROUND, 46);
         g.addColorStop(0, 'rgba(120,255,192,.85)'); g.addColorStop(1, 'rgba(120,255,192,0)');
         ctx.fillStyle = g; ctx.fillRect(lx - 46, GROUND - 46, 92, 92);
@@ -243,7 +235,8 @@
       ctx.globalCompositeOperation = 'source-over';
     }
 
-    fillGate(a, m);
+    fillGate(a * (1 - exacto), m);
+    if (exacto > 0.003) { ctx.globalAlpha = a * exacto; ctx.fillStyle = '#fff'; ctx.fill(pMark, 'evenodd'); }
     ctx.restore();
   }
 
@@ -456,5 +449,6 @@
       .then(function () { measureWords(); if (S.reduced) render(0); }, function () {});
   }
 
+  aurora.onload = function () { if (S.reduced) render(0); };
   if (S.reduced) { render(0); } else { requestAnimationFrame(frame); }
 })();

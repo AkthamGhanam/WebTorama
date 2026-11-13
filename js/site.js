@@ -16,12 +16,7 @@
   ];
 
   var defs = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' +
-    '<linearGradient id="tg-band" gradientUnits="userSpaceOnUse" x1="-90" y1="40" x2="95" y2="-40"><stop offset="0" stop-color="#0a5a58"/><stop offset=".55" stop-color="#35c79a"/><stop offset="1" stop-color="#78ffc0"/></linearGradient>' +
-    '<clipPath id="tg-clip"><circle cx="-.4" cy="2.8" r="92"/></clipPath>' +
-    '<g id="torama-mark"><g clip-path="url(#tg-clip)">' +
-    '<path d="M-94 8 C-60 40 -30 30 0 5 C30 -20 60 -40 96 -48 L96 -6 C60 0 35 16 5 40 C-25 62 -60 64 -90 44 Z" fill="url(#tg-band)"/>' +
-    '<path d="M14 -44 C44 -62 70 -70 96 -74 L96 -52 C70 -48 50 -40 30 -27 Z" fill="#c4ffe4" opacity=".8"/></g>' +
-    '<g fill="#fff" data-torii="ring"></g><g fill="#fff" data-torii="gate"></g></g>' +
+    '<g id="torama-mark" data-torii="mark"></g>' +
     '<g id="torama-gate" data-torii="gate"></g></defs></svg>';
 
   var mark = '<svg class="brand__mark" viewBox="-112 -112 224 224" aria-hidden="true"><use href="#torama-mark"/></svg>';

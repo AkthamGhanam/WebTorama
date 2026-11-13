@@ -72,8 +72,8 @@ em { font-style: normal; }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; flex: none; }
 .brand__mark { width: 44px; height: 44px; overflow: visible; transition: transform .6s var(--ease); }
 .brand:hover .brand__mark { transform: rotate(-8deg) scale(1.08); }
-.brand__name { font-family: var(--brand); font-weight: 400; font-size: 1.2rem; letter-spacing: .02em; white-space: nowrap; }
-.brand__name b { font-weight: 700; }
+.brand__name { font-family: Montserrat, Poppins, sans-serif; font-weight: 300; font-size: 1.15rem; letter-spacing: .01em; white-space: nowrap; }   /* tipografía del logo */
+.brand__name b { font-weight: 600; }
 .top.is-dock .brand__mark { width: 38px; height: 38px; }
 
 .nav { position: relative; margin-left: auto; display: flex; align-items: center; gap: 2px; font-size: .92rem; transition: opacity .4s, transform .5s var(--ease); }
@@ -139,7 +139,7 @@ em { font-style: normal; }
 html.rm .stage { height: 100vh; }
 .stage__pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
 .hero { position: absolute; inset: 0; will-change: opacity, transform; }
-.wordmark { position: absolute; left: calc(var(--ex) - var(--er) * 1.04); top: calc(var(--ey) + var(--er) * 1.01); width: calc(var(--er) * 1.96); height: auto; overflow: visible;
+.wordmark { position: absolute; left: calc(var(--ex) - var(--er) * .93); top: calc(var(--ey) + var(--er) * 1.13); width: calc(var(--er) * 1.8); height: auto; overflow: visible;
   filter: drop-shadow(0 4px 22px rgba(6, 13, 24, .8)); }
 .hero__copy { position: absolute; right: var(--pad); top: 54%; transform: translateY(-50%); width: min(46vw, 640px); text-align: right; text-shadow: 0 2px 26px rgba(6, 13, 24, .85); }
 .eyebrow { font-family: var(--brand); font-size: clamp(1.05rem, 1.6vw, 1.5rem); }
@@ -535,3 +535,5 @@ button.btn { font: inherit; font-weight: 500; }
 .form__legal a { color: var(--cyan); text-underline-offset: 3px; }
 .foot__bar a:not(.totop) { text-underline-offset: 4px; }
 .foot__bar a:not(.totop):hover { color: var(--cyan); }
+
+.menu-open .top__skip { opacity: 0 !important; visibility: hidden !important; }

@@ -73,7 +73,7 @@ Mientras falten esas variables, o donde no hay servidor (GitHub Pages, `python3 
 ## Estructura
 
 - `css/styles.css` — estilos base y de la portada. `css/pages.css` — páginas interiores. `css/admin.css` — panel.
-- `js/torii.js` — imagotipo oficial en vectores (canvas y SVG).
+- `js/torii.js` — logo oficial en vectores (canvas y SVG).
 - `js/scene.js` — paisaje y túnel en canvas, guiados por el scroll.
 - `js/main.js` — interacciones de la portada.
 - `js/content.js` — carga de contenido, Markdown seguro y envío de formularios.
@@ -89,8 +89,8 @@ Mientras falten esas variables, o donde no hay servidor (GitHub Pages, `python3 
 Colores, tipografía e imagotipo salen del manual corporativo:
 
 - Azul marino `#12283f` como color principal (el fondo del logo), verde `#78ffc0` como acento, blanco, y el coral `#e6414c` como contraste. El morado `#6750d6` del manual no se usa.
-- Tipografía Caviar Dreams (`assets/fonts/`) para el logotipo y los textos finos; Poppins para títulos y cuerpo.
-- El torii, el círculo y el logotipo "Torama Agency" son los trazados vectoriales del manual (`js/torii.js`). La aurora del sello está redibujada en verde.
+- Montserrat para el nombre de la marca (la tipografía del logo), Caviar Dreams (`assets/fonts/`) para los textos finos y Poppins para títulos y cuerpo.
+- El logo es la última versión de la marca: aro abierto, torii y aurora azul. El aro, el torii y el logotipo "Torama Agency" están trazados en vectores a partir del arte original (`js/torii.js`); la aurora es una imagen (`assets/logo-aurora.webp`). El favicon (`assets/favicon.png`) y el logo de los correos (`assets/email/logo-torama.png`) salen del mismo arte.
 
 ## Pendiente
 
