@@ -114,6 +114,11 @@ function limpiar(tipo, e) {
     categoria: CATEGORIAS.includes(e.categoria) ? e.categoria : 'meta-ads',
     resumen: texto(e.resumen, 400),
     video: rutaSegura(e.video),
+    // Videos alojados en el sitio (se suben al repositorio, no desde el panel): se conservan al editar
+    videos: (Array.isArray(e.videos) ? e.videos : []).slice(0, 30).map((v) => ({
+      src: rutaSegura(v && v.src), poster: rutaSegura(v && v.poster), titulo: texto(v && v.titulo, 120),
+      orient: v && v.orient === 'h' ? 'h' : 'v', dur: Math.max(0, Math.min(36000, Math.round(Number(v && v.dur) || 0)))
+    })).filter((v) => v.src),
     galeria: (Array.isArray(e.galeria) ? e.galeria : []).map(rutaSegura).filter(Boolean).slice(0, 40),
     metricas: (Array.isArray(e.metricas) ? e.metricas : []).map((m) => ({ valor: texto(m && m.valor, 24), etiqueta: texto(m && m.etiqueta, 60) }))
       .filter((m) => m.valor || m.etiqueta).slice(0, 8)

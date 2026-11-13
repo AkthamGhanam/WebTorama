@@ -1,6 +1,185 @@
 {
   "items": [
     {
+      "id": "psicomooc-reels",
+      "slug": "psicomooc-reels",
+      "titulo": "Reels que llenan formaciones",
+      "cliente": "Psicomooc",
+      "categoria": "audiovisual",
+      "resumen": "Reels para promocionar el Bootcamp para psicólogos, el Congreso de Psicología Pop y las formaciones de Psicomooc.",
+      "cuerpo": "Producción de reels para Psicomooc: guion, rodaje y edición con subtítulos dinámicos, pensados para promocionar sus formaciones online y presenciales en distintas ciudades de Venezuela.\n\nEn esta serie están el **Bootcamp para psicólogos**, el **Congreso de Psicología Pop**, una pieza divulgativa sobre **Skinner** y el video del **Congreso de Terapias de Tercera Generación**, realizado con inteligencia artificial.",
+      "portada": "content/media/casos/video/psicomooc-bootcamp.webp",
+      "galeria": [],
+      "video": "",
+      "videos": [
+        {
+          "src": "content/media/casos/video/psicomooc-bootcamp.mp4",
+          "poster": "content/media/casos/video/psicomooc-bootcamp.webp",
+          "titulo": "Bootcamp para psicólogos",
+          "orient": "v",
+          "dur": 87
+        },
+        {
+          "src": "content/media/casos/video/psicomooc-psicologia-pop.mp4",
+          "poster": "content/media/casos/video/psicomooc-psicologia-pop.webp",
+          "titulo": "Congreso de Psicología Pop",
+          "orient": "v",
+          "dur": 80
+        },
+        {
+          "src": "content/media/casos/video/psicomooc-skinner.mp4",
+          "poster": "content/media/casos/video/psicomooc-skinner.webp",
+          "titulo": "Skinner y el análisis funcional",
+          "orient": "v",
+          "dur": 47
+        },
+        {
+          "src": "content/media/casos/video/psicomooc-congreso-ia.mp4",
+          "poster": "content/media/casos/video/psicomooc-congreso-ia.webp",
+          "titulo": "Congreso de Terapias de Tercera Generación (IA)",
+          "orient": "v",
+          "dur": 73
+        }
+      ],
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-11-13",
+      "destacado": true,
+      "publicado": true
+    },
+    {
+      "id": "hotel-manantial-eventos",
+      "slug": "hotel-manantial-eventos",
+      "titulo": "Eventos contados en video",
+      "cliente": "Hotel Manantial",
+      "categoria": "audiovisual",
+      "resumen": "Cobertura en video de los eventos del hotel: Mujer 2.0 y el encuentro de motos.",
+      "cuerpo": "Cobertura audiovisual de los eventos realizados en el Hotel Manantial, para recapitularlos y proyectarlos con calidad e inmediatez.\n\nIncluye el evento **Mujer 2.0** y el **encuentro de motos**, grabados y editados en formato vertical para redes sociales.",
+      "portada": "content/media/casos/video/hotel-manantial-mujer-2-0.webp",
+      "galeria": [],
+      "video": "",
+      "videos": [
+        {
+          "src": "content/media/casos/video/hotel-manantial-mujer-2-0.mp4",
+          "poster": "content/media/casos/video/hotel-manantial-mujer-2-0.webp",
+          "titulo": "Mujer 2.0",
+          "orient": "v",
+          "dur": 85
+        },
+        {
+          "src": "content/media/casos/video/hotel-manantial-motos.mp4",
+          "poster": "content/media/casos/video/hotel-manantial-motos.webp",
+          "titulo": "Encuentro de motos",
+          "orient": "v",
+          "dur": 71
+        }
+      ],
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-11-12",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "omega-travel-reels",
+      "slug": "omega-travel-reels",
+      "titulo": "Reels que venden viajes",
+      "cliente": "Omega Travel",
+      "categoria": "audiovisual",
+      "resumen": "Reels con historias reales de asesoría de viajes: Curazao y conexiones de vuelo.",
+      "cuerpo": "Reels para Omega Travel grabados con su propio equipo: historias reales de clientes y consejos de viaje, con subtítulos y edición pensada para redes sociales.",
+      "portada": "content/media/casos/video/omega-travel-curazao.webp",
+      "galeria": [],
+      "video": "",
+      "videos": [
+        {
+          "src": "content/media/casos/video/omega-travel-curazao.mp4",
+          "poster": "content/media/casos/video/omega-travel-curazao.webp",
+          "titulo": "Un viaje a Curazao",
+          "orient": "v",
+          "dur": 63
+        },
+        {
+          "src": "content/media/casos/video/omega-travel-vuelos.mp4",
+          "poster": "content/media/casos/video/omega-travel-vuelos.webp",
+          "titulo": "2 vuelos, misma fecha",
+          "orient": "v",
+          "dur": 44
+        }
+      ],
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-11-11",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "lux-spa-depilacion-laser",
+      "slug": "lux-spa-depilacion-laser",
+      "titulo": "¿El láser duele?",
+      "cliente": "Lux Spa",
+      "categoria": "audiovisual",
+      "resumen": "Reel informativo sobre la depilación láser: qué hacer antes de la primera cita.",
+      "cuerpo": "Reel informativo para Lux Spa sobre la depilación láser: responde las dudas más frecuentes y explica qué hacer antes de la primera cita, con la especialista frente a cámara y subtítulos dinámicos.",
+      "portada": "content/media/casos/video/lux-spa-depilacion-laser.webp",
+      "galeria": [],
+      "video": "",
+      "videos": [
+        {
+          "src": "content/media/casos/video/lux-spa-depilacion-laser.mp4",
+          "poster": "content/media/casos/video/lux-spa-depilacion-laser.webp",
+          "titulo": "¿El láser duele?",
+          "orient": "v",
+          "dur": 74
+        }
+      ],
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-11-10",
+      "destacado": false,
+      "publicado": true
+    },
+    {
+      "id": "miss-beauty-continental",
+      "slug": "miss-beauty-continental",
+      "titulo": "Algo grande viene pronto",
+      "cliente": "Miss Beauty Continental",
+      "categoria": "audiovisual",
+      "resumen": "Serie de teasers de expectativa: la banda, el traje y la corona.",
+      "cuerpo": "Serie de teasers de expectativa grabados en 4K y cámara lenta: planos detalle de la banda, el traje y la corona para anunciar que «algo grande viene pronto».",
+      "portada": "content/media/casos/video/miss-beauty-teaser-1.webp",
+      "galeria": [],
+      "video": "",
+      "videos": [
+        {
+          "src": "content/media/casos/video/miss-beauty-teaser-1.mp4",
+          "poster": "content/media/casos/video/miss-beauty-teaser-1.webp",
+          "titulo": "Teaser 1 · Algo grande viene pronto",
+          "orient": "h",
+          "dur": 8
+        },
+        {
+          "src": "content/media/casos/video/miss-beauty-teaser-2.mp4",
+          "poster": "content/media/casos/video/miss-beauty-teaser-2.webp",
+          "titulo": "Teaser 2 · ¿Estás preparada?",
+          "orient": "h",
+          "dur": 9
+        },
+        {
+          "src": "content/media/casos/video/miss-beauty-teaser-3.mp4",
+          "poster": "content/media/casos/video/miss-beauty-teaser-3.webp",
+          "titulo": "Teaser 3 · La corona",
+          "orient": "h",
+          "dur": 9
+        }
+      ],
+      "metricas": [],
+      "autor": "Torama Agency",
+      "fecha": "2026-11-09",
+      "destacado": false,
+      "publicado": true
+    },
+    {
       "id": "aponwao-ve",
       "slug": "aponwao-ve",
       "titulo": "Más de 700% de retorno en un mes",

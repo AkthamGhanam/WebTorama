@@ -32,6 +32,7 @@
       </div>
     </section>
     <section class="wrap" id="lista" aria-live="polite">
+      <div class="reel" id="reel" hidden></div>
       <div class="grid grid--casos" id="grid"></div>
       <p class="empty" id="vacio" hidden>Todavía no hay casos en esta categoría.</p>
     </section>
@@ -56,6 +57,17 @@
     <button class="lightbox__nav lightbox__nav--prev" aria-label="Anterior">‹</button>
     <img alt="">
     <button class="lightbox__nav lightbox__nav--next" aria-label="Siguiente">›</button>
+  </div>
+
+  <!-- Reproductor de video -->
+  <div class="lightbox vbox" id="vbox" hidden>
+    <button class="lightbox__close" aria-label="Cerrar">×</button>
+    <button class="lightbox__nav lightbox__nav--prev" aria-label="Video anterior">‹</button>
+    <figure>
+      <video controls playsinline preload="none"></video>
+      <figcaption><b></b><span></span></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" aria-label="Video siguiente">›</button>
   </div>
 
   <div data-chrome="footer"></div>

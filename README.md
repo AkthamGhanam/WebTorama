@@ -17,7 +17,7 @@ y abrir `http://localhost:8000`.
 ## Páginas
 
 - `index.html` — portada inmersiva, con el formulario de contacto.
-- `casos.html` — todos los trabajos y casos de éxito, con filtros por servicio y página de detalle (`casos.html?c=…`).
+- `casos.html` — todos los trabajos y casos de éxito, con filtros por servicio (`casos.html?f=audiovisual` abre directamente la videoteca) y página de detalle (`casos.html?c=…`).
 - `noticias.html` — el Blog: listado, búsqueda, lectura (`noticias.html?n=…`) y formulario público "Envía tu nota de prensa".
 - `admin.html` — panel del equipo para publicar noticias y casos.
 - `privacidad.html` — política de privacidad (incluye las instrucciones de eliminación de datos en `privacidad.html#eliminacion`).
@@ -28,6 +28,7 @@ Las noticias y los casos son datos, no HTML:
 
 - `content/noticias.json` y `content/casos.json` — las entradas (título, texto en Markdown, portada, "Creado por", fecha, publicado o borrador…).
 - `content/media/` — las imágenes.
+- `content/media/casos/video/` — los videos de los casos (MP4 H.264 a 720p, con su portada `.webp`). Un caso los lista en su campo `videos` (`src`, `poster`, `titulo`, `orient` y `dur`). Son archivos pesados: se añaden al repositorio ya comprimidos, no desde el panel; el panel los conserva al editar el caso.
 
 Se editan desde `admin.html`. Cada guardado es un commit en `main` (texto e imágenes juntos) y el sitio se vuelve a publicar solo.
 
